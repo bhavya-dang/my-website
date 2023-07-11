@@ -1,3 +1,3 @@
-export const Hero = ({ data: any }) => {
+export const Hero = () => {
   return <div>Hero section</div>;
 };
