@@ -1,4 +1,4 @@
-import { notionColors } from "@/constants";
+import { notionColors } from "@/constants/index";
 
 export default async function Project() {
   //development

@@ -10,7 +10,19 @@ export const socialLinks = [
   },
 ];
 
-export const notionColors = {
+export const notionColors: {
+  [key: string]: string;
+  default: string;
+  gray: string;
+  brown: string;
+  orange: string;
+  yellow: string;
+  green: string;
+  blue: string;
+  purple: string;
+  pink: string;
+  red: string;
+} = {
   default: "#37352F",
   gray: "#9B9A97",
   brown: "#64473A",
