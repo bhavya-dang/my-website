@@ -1,7 +1,16 @@
 import { notionColors } from "@/constants";
 
 export default async function Project() {
-  const data = await fetch("http:localhost:3000/api/notion/", {
+  //development
+  // const data = await fetch("http:localhost:3000/api/notion/", {
+  //   next: {
+  //     revalidate: 0,
+  //   },
+  // });
+
+  //production
+  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL || "";
+  const data = await fetch(`${baseUrl}/api/notion/`, {
     next: {
       revalidate: 0,
     },
