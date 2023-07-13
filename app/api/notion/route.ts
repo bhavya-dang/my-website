@@ -20,7 +20,7 @@ const getDatabase = async () => {
   return response;
 };
 
-export async function GET(req: Request) {
+export async function GET(req: Request, res: Response) {
   const response = await getDatabase();
   return NextResponse.json(response);
 }
