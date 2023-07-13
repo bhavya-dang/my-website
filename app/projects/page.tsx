@@ -10,7 +10,7 @@ export default async function Project() {
 
   //production
   const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL || "";
-  const data = await fetch(`${baseUrl}/api/notion/`, {
+  const data = await fetch(`https://${baseUrl}/api/notion/`, {
     next: {
       revalidate: 0,
     },
