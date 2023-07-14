@@ -9,12 +9,14 @@ export default async function Project() {
   // });
 
   //production
-  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL || "";
-  const data = await fetch(`https://${baseUrl}/api/notion/`, {
+  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL || "localhost:3000";
+  const data = await fetch(`${baseUrl}/api/notion/`, {
     next: {
       revalidate: 0,
     },
   });
+  console.log("Data", data);
+  console.log("baseUrl", baseUrl);
   const query = await data.json();
 
   function getTagColor(tagColor: string) {
