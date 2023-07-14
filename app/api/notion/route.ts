@@ -22,5 +22,6 @@ const getDatabase = async () => {
 
 export async function GET(req: Request, res: Response) {
   const response = await getDatabase();
+  // console.log(response);
   return NextResponse.json(response);
 }
