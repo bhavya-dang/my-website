@@ -1,23 +1,29 @@
 import { notionColors } from "@/constants/index";
+import { Client } from "@notionhq/client";
+
+const notionSecret = process.env.NOTION_SECRET;
+const notion = new Client({ auth: notionSecret });
+const databaseID = process.env.NOTION_DB_ID;
+
+export const revalidate = 0; // to prevent hard caching on dev time
+
+const getDatabase = async () => {
+  if (!notionSecret || !databaseID)
+    throw new Error("Notion secret or database ID not found");
+  const response = await notion.databases.query({
+    database_id: databaseID,
+    sorts: [
+      {
+        property: "Name",
+        direction: "descending",
+      },
+    ],
+  });
+  return response;
+};
 
 export default async function Project() {
-  //development
-  // const data = await fetch("http:localhost:3000/api/notion/", {
-  //   next: {
-  //     revalidate: 0,
-  //   },
-  // });
-
-  //production
-  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL || "localhost:3000";
-  const data = await fetch(`${baseUrl}/api/notion/`, {
-    next: {
-      revalidate: 0,
-    },
-  });
-  console.log("Data", data);
-  console.log("baseUrl", baseUrl);
-  const query = await data.json();
+  const query = await getDatabase();
 
   function getTagColor(tagColor: string) {
     for (const key in notionColors) {
