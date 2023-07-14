@@ -38,9 +38,7 @@ export default async function Project() {
 
   return (
     <section className="m-auto mt-10 p-4">
-      <h2 className="text-whitefont-inter font-semibold text-3xl md:text-blue">
-        Projects
-      </h2>
+      <h2 className="text-whitefont-inter font-semibold text-3xl">Projects</h2>
       <div className="my-projects mt-4 flex flex-col flex-wrap gap-y-4 md:flex-row md:grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 aspect-w-1 aspect-h-1 md:gap-4">
         {query.results.map((project: any) => (
           <div
