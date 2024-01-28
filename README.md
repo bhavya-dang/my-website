@@ -1,8 +1,9 @@
-# Documentation
-
 ## Todo
 
 - [x] Change tag colors to what they have in the notion db
-- [ ] tweak the ui
-- [ ] add styling for dark mode
-- [ ] hero section
+- [x] tweak the ui for homepage and projects page
+- [x] add styling and logic for dark mode
+- [x] hero section
+- [ ] finish working on the blogs page
+- [ ] tweak ui for projects section
+- [ ] make site responsive
