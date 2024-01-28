@@ -1,86 +1,84 @@
 "use client";
 
-import { socialLinks } from "@/constants/index";
 import {
   GitHubLogoIcon,
   LinkedInLogoIcon,
   SunIcon,
   MoonIcon,
 } from "@radix-ui/react-icons";
-import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
 
+import { useEffect, useState } from "react";
+// interface NavbarProps {
+//   initialTheme: string;
+// }
 export const Navbar = () => {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light"); // Default to light theme
 
   useEffect(() => {
-    const localTheme = localStorage.getItem("theme");
-    if (localTheme) {
-      setTheme(localTheme);
-    } else {
-      document.querySelector("html")?.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    }
-  }, []);
+    const storedTheme = localStorage.getItem("theme");
 
-  const handleThemeToggle = () => {
-    if (theme === "dark") {
-      document.querySelector("html")?.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setTheme("light");
+    if (storedTheme === "light") {
+      setTheme(storedTheme);
     } else {
-      document.querySelector("html")?.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+      // const systemDarkMode = window.matchMedia(
+      //   "(prefers-color-scheme: dark)"
+      // ).matches;
+      document
+        .querySelector("html")
+        ?.classList.toggle("dark", theme === "dark" ? true : false);
+      // document.querySelector("html")?.classList.toggle("dark");
+      // localStorage.setItem("theme", systemDarkMode ? "dark" : "light");
       setTheme("dark");
     }
+  }, [theme]);
+
+  const handleThemeToggle = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    document
+      .querySelector("html")
+      ?.classList.toggle("dark", newTheme === "dark");
+    localStorage.setItem("theme", newTheme);
+    setTheme(newTheme);
   };
 
   return (
-    <nav className="flex justify-between font-inter text-white items-center mt-2 ml-3">
+    <nav className="flex justify-between font-mono text-slate-800 dark:text-slate-200 items-center mt-2 ml-3">
       <ul className="nav-links flex gap-8">
-        <li className="hover:text-[#a29bfe]">
-          <a href="/">Home</a>
+        <li className="hover:bg-violet-500 hover:text-white rounded">
+          <a href="/">/home</a>
         </li>
-        <li className="hover:text-[#a29bfe]">
-          <a href="/projects">Projects</a>
+        <li className="hover:bg-violet-500 hover:text-white rounded">
+          <a href="/projects">/projects</a>
         </li>
-        <li className="hover:text-[#a29bfe]">
-          <a href="/blogs">Blogs</a>
+        <li className="hover:bg-violet-500 hover:text-white rounded">
+          <a href="/blogs">/blogs</a>
         </li>
-        <li className="hover:text-[#a29bfe]">
+        <li className="hover:bg-violet-500 hover:text-white rounded">
           <a
             href="https://sync-codes.github.io/resume/"
             target="_blank"
             className="flex gap-1 items-center"
           >
-            Resume{" "}
-            <span className="w-[0.1rem] h-[0.1rem] relative">
+            /resume{" "}
+            {/* <span className="w-[0.1rem] h-[0.1rem] relative">
               {" "}
               <ArrowUpRightIcon className="h-3 w-3 text-gray-400 absolute top-1/2 -right-[0.68rem] transform -translate-y-1/2" />
-            </span>
+            </span> */}
           </a>
         </li>
       </ul>
       <div className="flex gap-4">
         <button
-          className="flex items-center opacity-60 hover:opacity-100"
+          className="flex items-center opacity-100 hover:opacity-60 transition ease-linear duration-150"
           onClick={handleThemeToggle}
         >
-          <SunIcon className="w-5 h-5" />
+          {/* <SunIcon className="w-5 h-5" /> */}
+          {theme === "light" ? (
+            <MoonIcon className="w-5 h-5" />
+          ) : (
+            <SunIcon className="w-5 h-5" />
+          )}
         </button>
-        <ul className="social-links flex gap-4">
-          {socialLinks.map((s, i) => (
-            <li key={i}>
-              <a href={s.url} target="_blank">
-                {s.name === "github" ? (
-                  <GitHubLogoIcon className="w-5 h-5 opacity-60 hover:opacity-100" />
-                ) : (
-                  <LinkedInLogoIcon className="w-5 h-5 opacity-60 hover:opacity-100" />
-                )}
-              </a>
-            </li>
-          ))}
-        </ul>
       </div>
     </nav>
   );

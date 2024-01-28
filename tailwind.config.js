@@ -19,17 +19,19 @@ for (const key in notionColors) {
 
 module.exports = {
   content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./constants/*",
   ],
+  darkMode: "class",
   safelist: colorList,
   theme: {
     extend: {
       colors: extendedColors,
       fontFamily: {
         inter: ["Inter", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
       },
     },
     plugins: [],
