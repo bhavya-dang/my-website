@@ -11,7 +11,6 @@ const roles = [
   "Editor",
   "Tech Enthusiast",
   "Student",
-  "Learner",
   "Gamer",
   "Nerd",
   "Weeb",

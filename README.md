@@ -4,6 +4,6 @@
 - [x] tweak the ui for homepage and projects page
 - [x] add styling and logic for dark mode
 - [x] hero section
-- [ ] finish working on the blogs page
+- [ ] finish working on the blogs page - likes
 - [ ] tweak ui for projects section
 - [ ] make site responsive

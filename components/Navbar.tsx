@@ -1,16 +1,9 @@
 "use client";
 
-import {
-  GitHubLogoIcon,
-  LinkedInLogoIcon,
-  SunIcon,
-  MoonIcon,
-} from "@radix-ui/react-icons";
+import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
 
 import { useEffect, useState } from "react";
-// interface NavbarProps {
-//   initialTheme: string;
-// }
+
 export const Navbar = () => {
   const [theme, setTheme] = useState("light"); // Default to light theme
 
@@ -20,14 +13,10 @@ export const Navbar = () => {
     if (storedTheme === "light") {
       setTheme(storedTheme);
     } else {
-      // const systemDarkMode = window.matchMedia(
-      //   "(prefers-color-scheme: dark)"
-      // ).matches;
       document
         .querySelector("html")
         ?.classList.toggle("dark", theme === "dark" ? true : false);
-      // document.querySelector("html")?.classList.toggle("dark");
-      // localStorage.setItem("theme", systemDarkMode ? "dark" : "light");
+
       setTheme("dark");
     }
   }, [theme]);
@@ -60,23 +49,16 @@ export const Navbar = () => {
             className="flex gap-1 items-center"
           >
             /resume{" "}
-            {/* <span className="w-[0.1rem] h-[0.1rem] relative">
-              {" "}
-              <ArrowUpRightIcon className="h-3 w-3 text-gray-400 absolute top-1/2 -right-[0.68rem] transform -translate-y-1/2" />
-            </span> */}
           </a>
         </li>
       </ul>
       <div className="flex gap-4">
-        <button
-          className="flex items-center opacity-100 hover:opacity-60 transition ease-linear duration-150"
-          onClick={handleThemeToggle}
-        >
+        <button className="flex items-center" onClick={handleThemeToggle}>
           {/* <SunIcon className="w-5 h-5" /> */}
           {theme === "light" ? (
-            <MoonIcon className="w-5 h-5" />
+            <MoonIcon className="w-5 h-5 hover:animate-wiggle transition ease-linear duration-150" />
           ) : (
-            <SunIcon className="w-5 h-5" />
+            <SunIcon className="w-5 h-5 hover:animate-spin-slow transition ease-linear duration-150" />
           )}
         </button>
       </div>

@@ -1,26 +1,9 @@
 import { notionColors } from "@/constants/index";
-import { Client } from "@notionhq/client";
-
-const notionSecret = process.env.NOTION_SECRET;
-const notion = new Client({ auth: notionSecret });
-const databaseID = process.env.NOTION_DB_ID;
+import { getDatabase } from "@/lib/notion/getDatabase";
+const databaseID = process.env.NOTION_PROJECTS_DB_ID;
 
 export const revalidate = 0; // to prevent hard caching on dev time
 
-const getDatabase = async () => {
-  if (!notionSecret || !databaseID)
-    throw new Error("Notion secret or database ID not found");
-  const response = await notion.databases.query({
-    database_id: databaseID,
-    sorts: [
-      {
-        property: "Name",
-        direction: "descending",
-      },
-    ],
-  });
-  return response;
-};
 import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Bhavya Dang - Projects",
@@ -29,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Project() {
-  const query = await getDatabase();
+  const query = await getDatabase(databaseID);
 
   function getTagColor(tagColor: string) {
     for (const key in notionColors) {
@@ -42,7 +25,7 @@ export default async function Project() {
 
   return (
     <section className="m-auto mt-10 p-4">
-      <h2 className="font-semibold text-3xl text-slate-950 dark:text-white">
+      <h2 className="font-inter font-bold text-4xl text-slate-950 dark:text-white">
         Projects
       </h2>
       <div className="my-projects mt-4 flex flex-col flex-wrap gap-y-4 md:flex-row md:grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 aspect-w-1 aspect-h-1 md:gap-4">
