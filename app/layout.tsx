@@ -35,6 +35,22 @@ export const metadata: Metadata = {
   title: "Bhavya Dang",
   description:
     "Bhavya Dang's super awesome amazing fantastic marvelous website",
+  openGraph: {
+    title: "Bhavya Dang",
+    description:
+      "Bhavya Dang's super awesome amazing fantastic marvelous website",
+    url: "https://bhavyadang.tech",
+    siteName: "Bhavya Dang",
+    images: [
+      {
+        url: "https://github.com/Sync-Codes/my-website/blob/master/public/me.jpg", // Must be an absolute URL
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -47,7 +63,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/SY__.png" sizes="any" />
       </head>
-      <body className="font-mono m-auto p-4 bg-slate-200 dark:bg-[#212121]">
+      <body className="font-mono m-auto p-4 bg-slate-200 dark:bg-[#212121] selection:bg-white selection:text-violet-900">
         <Navbar />
         {children}
         <Analytics />

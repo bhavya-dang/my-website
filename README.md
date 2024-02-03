@@ -7,3 +7,6 @@
 - [ ] finish working on the blogs page - likes
 - [ ] tweak ui for projects section
 - [ ] make site responsive
+- [x] dynamic routing for blog pages
+- [x] blog page content
+- [ ] finish dynamic styling for blog content

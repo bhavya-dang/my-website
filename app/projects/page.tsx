@@ -1,10 +1,10 @@
-import { notionColors } from "@/constants/index";
-import { getDatabase } from "@/lib/notion/getDatabase";
-const databaseID = process.env.NOTION_PROJECTS_DB_ID;
+import { getTagColor } from "@/lib/util/functions";
+import { getDatabase } from "@/lib/notion/handlers";
+import type { Metadata } from "next";
 
+const databaseID = process.env.NOTION_PROJECTS_DB_ID;
 export const revalidate = 0; // to prevent hard caching on dev time
 
-import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Bhavya Dang - Projects",
   description:
@@ -13,15 +13,6 @@ export const metadata: Metadata = {
 
 export default async function Project() {
   const query = await getDatabase(databaseID);
-
-  function getTagColor(tagColor: string) {
-    for (const key in notionColors) {
-      if (key === tagColor) {
-        return "bg-[" + notionColors[key] + "]";
-      }
-    }
-    return "bg-[" + notionColors.default + "]";
-  }
 
   return (
     <section className="m-auto mt-10 p-4">

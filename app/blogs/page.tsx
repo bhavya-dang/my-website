@@ -1,35 +1,33 @@
 /* eslint-disable @next/next/no-img-element */
-import { notionColors } from "@/constants/index";
-import { getDatabase } from "@/lib/notion/getDatabase";
+import { getTagColor } from "@/lib/util/functions";
+import { getDatabase } from "@/lib/notion/handlers";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
 import moment from "moment";
-const databaseID = process.env.NOTION_BLOGS_DB_ID;
+import Link from "next/link";
+import type { Metadata } from "next";
 
+const databaseID = process.env.NOTION_BLOGS_DB_ID;
 export const revalidate = 0; // to prevent hard caching on dev time
 
-import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Bhavya Dang - Blogs",
   description: "Bhavya Dang's super awesome amazing fantastic marvelous blogs",
 };
-export default async function Blogs() {
-  const query = await getDatabase(databaseID, "Created At", "descending");
 
-  function getTagColor(tagColor: string) {
-    for (const key in notionColors) {
-      if (key === tagColor) {
-        return "bg-[" + notionColors[key] + "]";
-      }
-    }
-    return "bg-[" + notionColors.default + "]";
-  }
+export default async function Blogs() {
+  const databaseQuery = await getDatabase(
+    databaseID,
+    "Created At",
+    "descending"
+  );
+
   return (
     <section className="m-auto mt-10 p-4">
       <h2 className="font-inter font-bold text-4xl text-slate-950 dark:text-white">
         Blogs
       </h2>
       <div className="mt-4 flex w-full flex-wrap gap-y-4">
-        {query.results.map((blog: any) => (
+        {databaseQuery.results.map((blog: any) => (
           <div
             className="card min-h-full min-w-full bg-white/5 backdrop-filter backdrop-blur-lg shadow-md rounded-xl font-inter p-4 text-slate-800 dark:text-white flex flex-col"
             key={blog.id}
@@ -45,7 +43,13 @@ export default async function Blogs() {
               <div className="flex-1">
                 <div className="flex justify-between ">
                   <h1 className="text-xl font-semibold">
-                    {blog.properties.Name.title[0].plain_text}
+                    <Link
+                      href={`/blogs/${blog.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {blog.properties.Name.title[0].plain_text}
+                    </Link>
                   </h1>
                   <span className="dark:text-white text-black/50 dark:opacity-25 font-mono">
                     {moment(blog.properties["Created At"].date.start).format(
@@ -54,7 +58,7 @@ export default async function Blogs() {
                   </span>
                 </div>
                 <p className="mt-3 text-slate-800 dark:text-white dark:opacity-70">
-                  {blog.properties.Description.rich_text[0].text.content
+                  {blog.properties.Description.rich_text.length > 0
                     ? blog.properties.Description.rich_text[0].text.content
                     : "No Desciption"}
                 </p>
