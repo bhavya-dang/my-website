@@ -1,12 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import { getTagColor } from "@/lib/util/functions";
-import { getDatabase } from "@/lib/notion/handlers";
+import { getTagColor } from "@/util/functions/index";
+import {
+  getDatabase,
+  getPageBySlug,
+  getPageContent,
+} from "@/util/notion/index";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
 import moment from "moment";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-const databaseID = process.env.NOTION_BLOGS_DB_ID;
 export const revalidate = 0; // to prevent hard caching on dev time
 
 export const metadata: Metadata = {
@@ -15,6 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Blogs() {
+  const databaseID = process.env.NOTION_BLOGS_DB_ID || ""; // Ensure databaseID is defined
   const databaseQuery = await getDatabase(
     databaseID,
     "Created At",
@@ -29,7 +33,7 @@ export default async function Blogs() {
       <div className="mt-4 flex w-full flex-wrap gap-y-4">
         {databaseQuery.results.map((blog: any) => (
           <div
-            className="card min-h-full min-w-full bg-white/5 backdrop-filter backdrop-blur-lg shadow-md rounded-xl font-inter p-4 text-slate-800 dark:text-white flex flex-col"
+            className="card min-h-full min-w-full bg-white/5 backdrop-filter backdrop-blur-lg shadow-xl drop-shadow-xl rounded-xl font-inter p-4 text-slate-800 dark:text-white flex flex-col"
             key={blog.id}
           >
             <div className="flex">
@@ -44,7 +48,7 @@ export default async function Blogs() {
                 <div className="flex justify-between ">
                   <h1 className="text-xl font-semibold">
                     <Link
-                      href={`/blogs/${blog.id}`}
+                      href={`/blogs/${blog.properties.Slug.rich_text[0].plain_text}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >

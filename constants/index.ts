@@ -1,7 +1,7 @@
 export const socialLinks = [
   {
     name: "github",
-    url: "https://github.com/Sync-Codes",
+    url: "https://github.com/bhavya-dang",
   },
 
   {

@@ -38,7 +38,7 @@ export const Hero = () => {
       {/* Purple box */}
       <div className="text-center w-1/2">
         <Image
-          src="/me.jpg" // Replace with the actual path to your image
+          src="/me4.jpg" // Replace with the actual path to your image
           height={400}
           width={400}
           alt="Hero Image"

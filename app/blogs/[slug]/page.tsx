@@ -1,13 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
-import { getPage, getBlocksFromPage } from "@/lib/notion/handlers";
-import { renderBlock } from "@/lib/notion/renderBlock";
+import {
+  getPageBySlug,
+  getPageContent,
+  notionClient,
+} from "@/util/notion/index";
 import moment from "moment";
 import type { Metadata } from "next";
+
+// notion renderer code
+import { NotionRenderer } from "@notion-render/client";
+import hljsPlugin from "@notion-render/hljs-plugin";
 
 export const revalidate = 0; // to prevent hard caching on dev time
 interface pageProps {
   params: {
-    blogID: string;
+    // blogID: string;
+    slug: string;
   };
 }
 
@@ -31,22 +39,28 @@ interface NotionPageResponse {
         multi_select: Array<{ name: string }>;
       };
     };
-    // other properties...
   };
-  // other properties...
 }
 
 export default async function Blogs({ params }: pageProps) {
-  const pageQuery: any = await getPage(params.blogID);
-  const blockQuery = await getBlocksFromPage(params.blogID);
+  const pageQuery: any = await getPageBySlug(params.slug);
 
-  const blocks = blockQuery.results;
+  const blockQuery = await getPageContent(pageQuery.id);
+
+  const notionRenderer = new NotionRenderer({
+    client: notionClient,
+  });
+
+  notionRenderer.use(hljsPlugin({}));
+  const html = await notionRenderer.render(...blockQuery);
+
+  const blocks = blockQuery;
   const title = pageQuery.properties?.Name?.title[0]?.plain_text;
   const createdAt = pageQuery.properties["Created At"].date.start;
   const tags = pageQuery.properties.Tags.multi_select;
 
   return (
-    <section className="m-auto mt-10 p-4 font-inter">
+    <section className="m-auto mt-10 ml-6 mr-6 font-inter text-lg">
       <div>
         <h1 className="text-4xl font-bold">{title}</h1>
         <p className="text-sm mt-5 dark:text-white text-black/50 dark:opacity-25 font-mono">
@@ -63,7 +77,11 @@ export default async function Blogs({ params }: pageProps) {
           ))}
         </div>
       </div>
-      <div className="mt-16">{blocks.map((block) => renderBlock(block))}</div>
+      {/* <div className="mt-16">{blocks.map((block) => renderBlock(block))}</div> */}
+      <div
+        className="notion-content mt-12"
+        dangerouslySetInnerHTML={{ __html: html }}
+      ></div>
     </section>
   );
 }
