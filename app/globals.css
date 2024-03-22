@@ -46,4 +46,16 @@
   .notion-content p {
     @apply mt-3 mb-3;
   }
+  /* for showing only the url instead of the whole anchor tag */
+  /* .notion-content .notion-code:first-of-type .language-javascript {
+    display: inline !important;
+    visibility: hidden;
+  }
+
+  .notion-content
+    .notion-code:first-of-type
+    .language-javascript
+    .hljs-string:first-of-type {
+    visibility: visible;
+  } */
 }

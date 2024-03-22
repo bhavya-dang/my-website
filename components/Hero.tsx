@@ -13,7 +13,7 @@ export const Hero = () => {
       <div className="text-center w-1/2">
         <h1 className="text-4xl">
           Hi, I&apos;m{" "}
-          <span className="text-white py-1 px-3 rounded-full bg-violet-500">
+          <span className="text-white py-1 px-3 rounded-full bg-violet-500 shadow-lg shadow-violet-500/85">
             Bhavya Dang
           </span>
         </h1>
@@ -35,19 +35,16 @@ export const Hero = () => {
           </ul>
         </div>
       </div>
-      {/* Purple box */}
-      <div className="text-center w-1/2">
+
+      <div className="text-center ml-10 w-1/2">
         <Image
-          src="/me4.jpg" // Replace with the actual path to your image
+          src="/me4.jpg"
           height={400}
           width={400}
           alt="Hero Image"
-          className="rounded-full"
+          className="rounded-full drop-shadow-2xl"
         />
-
-        {/* </div> */}
       </div>
-      {/* <div className="absolute bg-violet-500 rotate-12 ml-10 w-[500px] h-[500px] z-40"></div> */}
     </div>
   );
 };

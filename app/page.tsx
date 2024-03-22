@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Hero } from "../components/Hero";
+import { AboutMe } from "@/components/AboutMe";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       {/* Radial gradient for the container to give a faded look */}
       {/* <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
       <Hero />
+      {/* <AboutMe /> */}
       {/* </main> */}
     </>
   );

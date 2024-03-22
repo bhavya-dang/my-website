@@ -31,7 +31,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between font-mono text-slate-800 dark:text-slate-200 items-center mt-2 ml-3">
+    <nav className="flex p-4 justify-between font-mono text-slate-800 dark:text-slate-200 items-center mt-2 ml-3">
       <ul className="nav-links flex gap-8">
         <li className="hover:bg-violet-500 hover:text-white rounded">
           <a href="/">/home</a>
@@ -44,7 +44,7 @@ export const Navbar = () => {
         </li>
         <li className="hover:bg-violet-500 hover:text-white rounded">
           <a
-            href="https://sync-codes.github.io/resume/"
+            href="https://bhavya-dang.github.io/resume/"
             target="_blank"
             className="flex gap-1 items-center"
           >
