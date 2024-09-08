@@ -3,6 +3,9 @@ import RoleScramble from "../app/roles";
 import { socialLinks } from "@/constants/index";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import WorkStatus from "@/components/work-status";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const Hero = () => {
   return (
@@ -18,7 +21,9 @@ export const Hero = () => {
       </div>
 
       <div className="flex flex-col items-center w-full mt-14 md:w-1/2 md:items-start text-center md:text-left">
-        <h1 className="text-4xl md:text-4xl font-inter font-bold text-black dark:text-white">
+        <h1
+          className={`text-4xl md:text-4xl font-bold text-black dark:text-white ${inter.className}`}
+        >
           Hi, I&apos;m{" "}
           <span className="md:py-1 md:px-3 md:rounded-full md:bg-violet-500 md:shadow-lg md:shadow-violet-500/85">
             Bhavya Dang
