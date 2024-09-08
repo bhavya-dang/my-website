@@ -37,7 +37,7 @@ export const Navbar = () => {
         {navLinks.map((link, index) => (
           <li
             key={index}
-            className="hover:bg-violet-500 hover:text-white rounded"
+            className="px-3 py-1 hover:bg-violet-500 hover:text-white rounded-full"
           >
             <a
               href={link.href}
