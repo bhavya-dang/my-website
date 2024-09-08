@@ -33,7 +33,7 @@ export const Navbar = () => {
 
   return (
     <nav className="flex p-4 justify-between font-mono text-slate-800 dark:text-slate-200 items-center mt-2 ml-3">
-      <ul className="nav-links flex gap-8">
+      <ul className="hidden nav-links md:flex gap-8">
         {navLinks.map((link, index) => (
           <li
             key={index}
@@ -51,12 +51,12 @@ export const Navbar = () => {
       </ul>
       <Menu />
       <div className="flex gap-4">
-        <button className="flex items-center" onClick={handleThemeToggle}>
+        <button className="flex items-center mr-5" onClick={handleThemeToggle}>
           {/* <SunIcon className="w-5 h-5" /> */}
           {theme === "light" ? (
-            <MoonIcon className="w-5 h-5 hover:animate-wiggle transition ease-linear duration-150" />
+            <MoonIcon className="w-[25px] h-[25px] hover:animate-wiggle transition ease-linear duration-150" />
           ) : (
-            <SunIcon className="w-5 h-5 hover:animate-spin-slow transition ease-linear duration-150" />
+            <SunIcon className="w-[25px] h-[25px] hover:animate-spin-slow transition ease-linear duration-150" />
           )}
         </button>
       </div>

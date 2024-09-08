@@ -1,23 +1,32 @@
 import Image from "next/image";
 import RoleScramble from "../app/roles";
-
 import { socialLinks } from "@/constants/index";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import WorkStatus from "@/components/work-status";
 
 export const Hero = () => {
   return (
-    <div className="flex items-center h-[91vh] w-full">
-      <div className="text-center w-1/2">
-        <h1 className="-ml-28 text-4xl">
+    <div className="flex flex-col md:flex-row items-center justify-center md:h-[91vh] h-screen w-full">
+      <div className="small-hero w-full flex justify-center mb-8">
+        <Image
+          src="/me4.jpg"
+          height={200}
+          width={200}
+          alt="Hero Image"
+          className="md:hidden mr-6 rounded-full dark:shadow-[0_0_5rem_-0.5rem_#fff8] shadow-[0_0_5rem_-0.5rem_#000] hero-join-button-dark-i transition-all duration-300 p-[1px]"
+        />
+      </div>
+
+      <div className="flex flex-col items-center w-full mt-14 md:w-1/2 md:items-start text-center md:text-left">
+        <h1 className="text-4xl md:text-4xl font-inter font-bold text-black dark:text-white">
           Hi, I&apos;m{" "}
-          <span className="text-white py-1 px-3 rounded-full bg-violet-500 shadow-lg shadow-violet-500/85">
+          <span className="md:py-1 md:px-3 md:rounded-full md:bg-violet-500 md:shadow-lg md:shadow-violet-500/85">
             Bhavya Dang
           </span>
         </h1>
 
-        <div className="ml-[21%]">
-          <RoleScramble />
+        <div className="mt-3 flex flex-col items-center mr-12">
+          <RoleScramble className="font-mono italic text-2xl md:text-3xl font-semibold text-neutral-500 text-center md:text-left" />
 
           <ul className="social-links flex gap-4 mt-4">
             {socialLinks.map((s, i) => (
@@ -36,7 +45,7 @@ export const Hero = () => {
         </div>
       </div>
 
-      <div className="text-center w-1/2">
+      <div className="hidden md:flex justify-center w-full md:w-1/2">
         <Image
           src="/me4.jpg"
           height={400}

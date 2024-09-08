@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const roles = [
   "Web Developer",
   "UI/UX Designer",
-  "Open Source Contributor",
+  "OSS Contributor",
   "Bibliophile",
   "Editor",
   "Tech Enthusiast",
@@ -28,13 +28,11 @@ function* randomRole(): Generator<string> {
   }
 }
 
-export default function RoleScramble() {
-  const [role, setRole] = useState<string>(randomRole().next().value);
+export default function RoleScramble({ className }: { className: string }) {
+  const [role, setRole] = useState<string>("Developer");
   const { ref } = useScramble({
     text: role,
     overdrive: false,
-    // unicode: 33, 35, 36, 37, 38, 42, 43, 45, 48-57, 61, 63, 64, 65-90, 97-122, 126
-    // charset:  !,  #,  $,  %,  &,  *,  +,  -,   0-9,  =,  ?,  @,   A-Z,    a-z,   ~
     range: [
       33, 35, 36, 37, 38, 42, 43, 45, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
       61, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
@@ -53,13 +51,8 @@ export default function RoleScramble() {
   }, []);
 
   return (
-    <div className="flex mt-5">
-      <span
-        ref={ref}
-        className="font-plex italic dark:text-slate-300 text-slate-700"
-      >
-        Web Developer
-      </span>
-    </div>
+    <p ref={ref} className={className}>
+      {role}
+    </p>
   );
 }
