@@ -1,8 +1,9 @@
 "use client";
 
 import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
-
 import { useEffect, useState } from "react";
+import Menu from "./Menu";
+import { navLinks } from "@/constants";
 
 export const Navbar = () => {
   const [theme, setTheme] = useState("light"); // Default to light theme
@@ -33,25 +34,22 @@ export const Navbar = () => {
   return (
     <nav className="flex p-4 justify-between font-mono text-slate-800 dark:text-slate-200 items-center mt-2 ml-3">
       <ul className="nav-links flex gap-8">
-        <li className="hover:bg-violet-500 hover:text-white rounded">
-          <a href="/">/home</a>
-        </li>
-        <li className="hover:bg-violet-500 hover:text-white rounded">
-          <a href="/projects">/projects</a>
-        </li>
-        <li className="hover:bg-violet-500 hover:text-white rounded">
-          <a href="/blogs">/blogs</a>
-        </li>
-        <li className="hover:bg-violet-500 hover:text-white rounded">
-          <a
-            href="https://bhavya-dang.github.io/resume/"
-            target="_blank"
-            className="flex gap-1 items-center"
+        {navLinks.map((link, index) => (
+          <li
+            key={index}
+            className="hover:bg-violet-500 hover:text-white rounded"
           >
-            /resume{" "}
-          </a>
-        </li>
+            <a
+              href={link.href}
+              target={link.external ? "_blank" : "_self"}
+              className="flex gap-1 items-center"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
       </ul>
+      <Menu />
       <div className="flex gap-4">
         <button className="flex items-center" onClick={handleThemeToggle}>
           {/* <SunIcon className="w-5 h-5" /> */}

@@ -63,7 +63,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/SY__.png" sizes="any" />
       </head>
-      <body className="font-mono m-auto bg-slate-200 dark:bg-[#212121] selection:bg-white selection:text-violet-900">
+      <body className="font-mono m-auto bg-slate-200 dark:bg-black selection:bg-white selection:text-violet-900">
         <Navbar />
         {children}
         <Analytics />

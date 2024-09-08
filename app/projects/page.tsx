@@ -16,10 +16,6 @@ export default async function Project() {
   const databaseID = process.env.NOTION_PROJECTS_DB_ID || "";
   const query = await getDatabase(databaseID);
 
-  // query.results.map((project: any) => {
-  //   console.log(project.properties["Image"].files[0].file.url);
-  // });
-
   return (
     <section className="m-auto mt-10 p-4">
       <h2 className="font-inter font-bold text-4xl text-slate-950 dark:text-white">
@@ -28,7 +24,7 @@ export default async function Project() {
       <div className="my-projects mt-4 flex flex-col flex-wrap gap-y-4 md:flex-row md:grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 aspect-w-1 aspect-h-1 md:gap-4">
         {query.results.map((project: any) => (
           <div
-            className="card min-h-full min-w-full bg-white/10 backdrop-filter backdrop-blur-lg shadow-md rounded-xl font-inter p-4 text-slate-800 dark:text-white my-project"
+            className="card min-h-full min-w-full bg-white/10 backdrop-filter backdrop-blur-lg shadow-md rounded-xl font-inter p-4 text-slate-800 dark:text-white border-2 border-white/10 transition duration-300 ease-in-out"
             key={project.id}
           >
             {project.properties["Image"].files[0]?.file.url && (

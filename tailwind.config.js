@@ -2,6 +2,7 @@
 
 const defaultTheme = require("tailwindcss/defaultTheme");
 
+import internal from "stream";
 // fix: ensure dynamic colors work in tailwind
 import { notionColors } from "./constants/index";
 const svgToDataUri = require("mini-svg-data-uri");
@@ -39,7 +40,8 @@ module.exports = {
     extend: {
       colors: extendedColors,
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
+        satoshi: ["Satoshi"],
+        inter: ["Inter"],
         mono: ["JetBrains Mono", "monospace"],
       },
       animation: {

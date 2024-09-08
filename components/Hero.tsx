@@ -1,22 +1,21 @@
-import RoleScramble from "../app/roles";
 import Image from "next/image";
+import RoleScramble from "../app/roles";
 
 import { socialLinks } from "@/constants/index";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
+import WorkStatus from "@/components/work-status";
 
 export const Hero = () => {
   return (
-    <div className="flex items-center justify-center h-[90vh]">
-      {/* Purple box */}
-      {/* <div className="absolute bg-violet-500 rotate-12 ml-10 w-[500px] h-[500px] z-40"></div> */}
-
+    <div className="flex items-center h-[91vh] w-full">
       <div className="text-center w-1/2">
-        <h1 className="text-4xl">
+        <h1 className="-ml-28 text-4xl">
           Hi, I&apos;m{" "}
           <span className="text-white py-1 px-3 rounded-full bg-violet-500 shadow-lg shadow-violet-500/85">
             Bhavya Dang
           </span>
         </h1>
+
         <div className="ml-[21%]">
           <RoleScramble />
 
@@ -33,16 +32,17 @@ export const Hero = () => {
               </li>
             ))}
           </ul>
+          <WorkStatus />
         </div>
       </div>
 
-      <div className="text-center ml-10 w-1/2">
+      <div className="text-center w-1/2">
         <Image
           src="/me4.jpg"
           height={400}
           width={400}
           alt="Hero Image"
-          className="rounded-full drop-shadow-2xl"
+          className="rounded-full dark:shadow-[0_0_5rem_-0.5rem_#fff8] shadow-[0_0_5rem_-0.5rem_#000] hero-join-button-dark-i transition-all duration-300 p-[1px]"
         />
       </div>
     </div>
