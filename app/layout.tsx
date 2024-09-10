@@ -33,12 +33,10 @@ import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Bhavya Dang",
-  description:
-    "Bhavya Dang's super awesome amazing fantastic marvelous website",
+  description: "Bhavya Dang | Full Stack Developer",
   openGraph: {
     title: "Bhavya Dang",
-    description:
-      "Bhavya Dang's super awesome amazing fantastic marvelous website",
+    description: "Bhavya Dang | Full Stack Developer",
     url: "https://bhavyadang.tech",
     siteName: "Bhavya Dang",
     images: [
@@ -61,7 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="">
       <head>
-        <link rel="icon" href="/SY__.png" sizes="any" />
+        <link rel="icon" href="/terminal.svg" sizes="any" />
       </head>
       <body className="font-mono m-auto bg-slate-200 dark:bg-black selection:bg-white selection:text-violet-900">
         <Navbar />

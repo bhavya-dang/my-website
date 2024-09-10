@@ -1,9 +1,15 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
+import { SunIcon, MoonIcon, HomeIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import Menu from "./Menu";
 import { navLinks } from "@/constants";
+import { Home } from "lucide-react";
+
+import { Inter } from "next/font/google";
+import Image from "next/image";
+const inter = Inter({ subsets: ["latin"] });
 
 export const Navbar = () => {
   const [theme, setTheme] = useState("light"); // Default to light theme
@@ -32,8 +38,8 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="flex p-4 justify-between font-mono text-slate-800 dark:text-slate-200 items-center mt-2 ml-3">
-      <ul className="hidden nav-links md:flex gap-8">
+    <nav className="flex p-4 justify-between font-mono text-slate-800 dark:text-slate-200 items-center mt-2">
+      <ul className="hidden nav-links lg:flex gap-x-1">
         {navLinks.map((link, index) => (
           <li
             key={index}
@@ -42,7 +48,7 @@ export const Navbar = () => {
             <a
               href={link.href}
               target={link.external ? "_blank" : "_self"}
-              className="flex gap-1 items-center"
+              className="flex gap-1 items-center text-sm"
             >
               {link.label}
             </a>
@@ -50,13 +56,16 @@ export const Navbar = () => {
         ))}
       </ul>
       <Menu />
-      <div className="flex gap-4">
-        <button className="flex items-center mr-5" onClick={handleThemeToggle}>
+      <div className="flex items-center gap-3">
+        <a href="/" className="lg:hidden font-semibold">
+          <Home size={20} strokeWidth={1} />
+        </a>
+        <button className="flex items-center" onClick={handleThemeToggle}>
           {/* <SunIcon className="w-5 h-5" /> */}
           {theme === "light" ? (
-            <MoonIcon className="w-[25px] h-[25px] hover:animate-wiggle transition ease-linear duration-150" />
+            <MoonIcon className="w-[20px] h-[20px] hover:animate-wiggle transition ease-linear duration-150" />
           ) : (
-            <SunIcon className="w-[25px] h-[25px] hover:animate-spin-slow transition ease-linear duration-150" />
+            <SunIcon className="w-[20px] h-[20px] hover:animate-spin-slow transition ease-linear duration-150" />
           )}
         </button>
       </div>

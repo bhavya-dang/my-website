@@ -14,7 +14,7 @@ export const revalidate = 0; // to prevent hard caching on dev time
 
 export const metadata: Metadata = {
   title: "Bhavya Dang - Blogs",
-  description: "Bhavya Dang's super awesome amazing fantastic marvelous blogs",
+  description: "Bhavya Dang's immaculate blogs",
 };
 
 export default async function Blogs() {

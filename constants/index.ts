@@ -14,6 +14,8 @@ export const navLinks = [
   { href: "/", label: "/home" },
   { href: "/projects", label: "/projects" },
   { href: "/blogs", label: "/blogs" },
+  { href: "/gallery", label: "/gallery" },
+  // { href: "/talks", label: "/talks" },
   {
     href: "https://bhavya-dang.github.io/resume/",
     label: "/resume",

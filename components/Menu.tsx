@@ -16,6 +16,9 @@ import {
   LinkedinIcon,
   Frame,
   FileDigit,
+  Images,
+  Mic,
+  Mic2,
 } from "lucide-react";
 
 import React from "react";
@@ -32,7 +35,7 @@ const dropdownStyles = {
 
 const Menu = () => {
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -40,12 +43,12 @@ const Menu = () => {
             variant="outline"
             size="icon"
           >
-            <AlignLeft size="25px" />
+            <AlignLeft size="20px" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="min-w-[16rem] font-mono rounded-[0.75rem] ml-8 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-black dark:text-white"
+          className="min-w-[16rem] font-mono rounded-[0.75rem] ml-14 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-black dark:text-white"
         >
           <DropdownMenuItem asChild className={dropdownStyles.item}>
             <Link href="/" className={dropdownStyles.itemLink}>
@@ -60,11 +63,19 @@ const Menu = () => {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild className={dropdownStyles.item}>
-            <Link
-              href="/projects"
-              target="_blank"
-              className={dropdownStyles.itemLink}
-            >
+            <Link href="/gallery" className={dropdownStyles.itemLink}>
+              <Images size={"18px"} strokeWidth={1.5} />
+              <span>gallery</span>
+            </Link>
+          </DropdownMenuItem>
+          {/* <DropdownMenuItem asChild className={dropdownStyles.item}>
+            <Link href="/talks" className={dropdownStyles.itemLink}>
+              <Mic2 size={"18px"} strokeWidth={1.5} />
+              <span>talks</span>
+            </Link>
+          </DropdownMenuItem> */}
+          <DropdownMenuItem asChild className={dropdownStyles.item}>
+            <Link href="/projects" className={dropdownStyles.itemLink}>
               <Frame size={"18px"} strokeWidth={1.5} />
               <span className={dropdownStyles.itemLabel}>projects</span>
             </Link>
