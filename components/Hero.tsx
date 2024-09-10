@@ -37,10 +37,10 @@ export const Hero = () => {
       {/* Text Section */}
       <div className="w-full md:w-1/2 md:ml-3 flex flex-col items-center md:items-start lg:ml-32 text-center md:text-left mt-2 md:mt-0">
         <h1
-          className={`text-3xl lg:text-4xl font-bold text-black dark:text-white ${inter.className} bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50`}
+          className={`text-3xl lg:text-4xl font-bold  ${inter.className} bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50`}
         >
           Hi, I&apos;m{" "}
-          <span className="md:py-1 md:px-3 md:rounded-full md:bg-violet-500 md:shadow-lg md:shadow-violet-500/40">
+          <span className="md:py-1 md:px-3 text-black bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50 md:rounded-full md:bg-white md:shadow-lg md:shadow-violet-500/40">
             Bhavya Dang
           </span>
         </h1>
