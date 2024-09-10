@@ -26,7 +26,7 @@ const keyframes = `
 export default function Gallery() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState(null); // For modal
+  const [selectedImage, setSelectedImage] = useState<string | null>(null); // For modal
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -44,7 +44,7 @@ export default function Gallery() {
     fetchImages();
   }, []);
 
-  const openModal = (src) => {
+  const openModal = (src: string) => {
     setSelectedImage(src);
   };
 
