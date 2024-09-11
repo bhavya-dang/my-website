@@ -16,7 +16,7 @@ export const Hero = () => {
   const getImageSize = (): { w: number; h: number } => {
     if (width && width < 640) return { w: 200, h: 200 }; // Small screens (sm)
     if (width && width >= 640 && width < 1024) return { w: 350, h: 350 }; // Medium screens (md)
-    return { w: 500, h: 500 }; // Large screens (lg) or default
+    return { w: 450, h: 450 }; // Large screens (lg) or default
   };
 
   const { w, h } = getImageSize();
@@ -26,7 +26,7 @@ export const Hero = () => {
       {/* Small Hero for Mobile */}
       <div className="small-hero w-full md:hidden flex justify-center mb-4">
         <Image
-          src="/me4.jpg"
+          src="/sync.jpg"
           height={200}
           width={200}
           alt="Hero Image"
@@ -71,13 +71,12 @@ export const Hero = () => {
       {/* Image Section for larger screens */}
       <div className="hidden w-full md:w-1/2 md:flex justify-center">
         <Image
-          src="/me4.jpg"
+          src="/sync.jpg"
           alt="Hero Image"
           className="rounded-full dark:shadow-[0_0_5rem_-0.5rem_#fff8] shadow-[0_0_5rem_-0.5rem_#000] hero-join-button-dark-i transition-all duration-300 p-[1px]"
           // Tailwind class to handle responsive sizing
           width={w}
           height={h}
-          sizes="(min-width: 1024px) 500px, (min-width: 768px) 400px, 300px"
         />
       </div>
     </div>

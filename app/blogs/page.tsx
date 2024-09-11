@@ -9,6 +9,8 @@ import { ExternalLinkIcon } from "@radix-ui/react-icons";
 import moment from "moment";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] });
 
 export const revalidate = 0; // to prevent hard caching on dev time
 
@@ -26,14 +28,14 @@ export default async function Blogs() {
   );
 
   return (
-    <section className="m-auto mt-10 p-4">
-      <h2 className="font-inter font-bold text-4xl text-slate-950 dark:text-white">
+    <section className={`m-auto mt-10 p-4 ${inter.className}`}>
+      <h1 className="font-inter font-bold text-4xl text-slate-950 dark:text-white">
         Blogs
-      </h2>
+      </h1>
       <div className="mt-4 flex w-full flex-wrap gap-y-4">
         {databaseQuery.results.map((blog: any) => (
           <div
-            className="card min-h-full min-w-full bg-white/5 backdrop-filter backdrop-blur-lg shadow-xl drop-shadow-xl rounded-xl font-inter p-4 text-slate-800 dark:text-white flex flex-col"
+            className="card min-h-full min-w-ful p-4 text-slate-800 dark:text-white flex flex-col"
             key={blog.id}
           >
             <div className="flex">
@@ -41,11 +43,11 @@ export default async function Blogs() {
                 <img
                   src={blog.properties["Files & media"].files[0].file.url}
                   alt="Blog Image"
-                  className="w-1/5 h-auto object-cover rounded-md mr-5"
+                  className="w-1/5 h-auto object-cover rounded-md mr-5 aspect-square"
                 />
               )}
-              <div className="flex-1">
-                <div className="flex justify-between ">
+              <div className="flex flex-col justify-between flex-1">
+                <div className="blog-head flex flex-col justify-between ">
                   <h1 className="text-xl font-semibold">
                     <Link
                       href={`/blogs/${blog.properties.Slug.rich_text[0].plain_text}`}
@@ -55,19 +57,22 @@ export default async function Blogs() {
                       {blog.properties.Name.title[0].plain_text}
                     </Link>
                   </h1>
-                  <span className="dark:text-white text-black/50 dark:opacity-25 font-mono">
+                  <span className="dark:text-white text-black/50 dark:opacity-25">
                     {moment(blog.properties["Created At"].date.start).format(
                       "MMMM DD, YYYY"
                     )}
                   </span>
                 </div>
-                <p className="mt-3 text-slate-800 dark:text-white dark:opacity-70">
-                  {blog.properties.Description.rich_text.length > 0
-                    ? blog.properties.Description.rich_text[0].text.content
-                    : "No Desciption"}
-                </p>
-                <div className="details flex items-end justify-between mt-[4.5rem]">
-                  <div>
+                {blog.properties.Description.rich_text.length > 0 && (
+                  <p className="mt-3 text-slate-800 dark:text-white dark:opacity-70">
+                    {blog.properties.Description.rich_text[0].text.content}
+                  </p>
+                )}
+
+                <div
+                  className={`details flex items-end md:items-center justify-between mt-[4.5rem] `}
+                >
+                  <div className="flex flex-wrap flex-1 gap-y-2">
                     {blog.properties.Tags.multi_select.length !== 0 &&
                       blog.properties.Tags.multi_select.map(
                         (tag: any, index: number) => (

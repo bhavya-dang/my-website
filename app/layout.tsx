@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: "Bhavya Dang",
     images: [
       {
-        url: "https://github.com/Sync-Codes/my-website/blob/master/public/me.jpg", // Must be an absolute URL
+        url: "https://github.com/Sync-Codes/my-website/blob/master/public/bhavyadang.jpeg", // Must be an absolute URL
         width: 800,
         height: 600,
       },

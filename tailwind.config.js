@@ -41,7 +41,6 @@ module.exports = {
       colors: extendedColors,
       fontFamily: {
         satoshi: ["Satoshi"],
-        inter: ["Inter"],
         mono: ["JetBrains Mono", "monospace"],
       },
       animation: {
