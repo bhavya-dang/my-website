@@ -2,6 +2,7 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { getTagColor } from "@/util/functions";
+import Link from "next/link";
 
 type Project = {
   id: string;
@@ -41,11 +42,20 @@ export default function ImageCarousel({ items }: ImageCarouselProps) {
         autoPlay={true}
         showStatus={false}
         interval={6000}
+        onClickItem={(index) => {
+          const selectedItem = items[index]; // Use the correct item based on the index
+          const demoUrl =
+            selectedItem.properties["Demo URL"].rich_text.length !== 0
+              ? selectedItem.properties["Demo URL"].rich_text[0].href
+              : selectedItem.properties["Github URL"].rich_text[0].href;
+
+          window.open(demoUrl);
+        }}
         className="p-12"
       >
-        {items.map((item) => (
+        {items.map((item, index) => (
           <div
-            key={item.id}
+            key={index}
             className="flex flex-col items-center justify-center"
           >
             <div className="mb-16 h-full overflow-visible">
