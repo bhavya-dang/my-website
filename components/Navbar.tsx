@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Menu from "./Menu";
 import { navLinks } from "@/constants";
 import { Home } from "lucide-react";
+import { FloatingDockDemo } from "./FloatingDock";
 
 import { Inter } from "next/font/google";
 import Image from "next/image";
@@ -55,6 +56,7 @@ export const Navbar = () => {
           </li>
         ))}
       </ul>
+      {/* <FloatingDockDemo /> */}
       <Menu />
       <div className="flex items-center gap-3">
         <a href="/" className="lg:hidden font-semibold">

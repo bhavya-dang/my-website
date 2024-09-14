@@ -1,22 +1,24 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import RoleScramble from "../app/roles";
 import { socialLinks } from "@/constants/index";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import WorkStatus from "@/components/work-status";
 import { useWindowSize } from "@/app/hooks/useWindowSize";
+import AboutMeModal from "../components/AboutMeModal";
 
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const { width } = useWindowSize();
 
-  // Define the return type of getImageSize
   const getImageSize = (): { w: number; h: number } => {
-    if (width && width < 640) return { w: 200, h: 200 }; // Small screens (sm)
-    if (width && width >= 640 && width < 1024) return { w: 350, h: 350 }; // Medium screens (md)
-    return { w: 450, h: 450 }; // Large screens (lg) or default
+    if (width && width < 640) return { w: 200, h: 200 };
+    if (width && width >= 640 && width < 1024) return { w: 350, h: 350 };
+    return { w: 450, h: 450 };
   };
 
   const { w, h } = getImageSize();
@@ -40,7 +42,10 @@ export const Hero = () => {
           className={`text-3xl lg:text-4xl font-bold  ${inter.className} bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50`}
         >
           Hi, I&apos;m{" "}
-          <span className="md:py-1 md:px-3 text-black bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50 md:rounded-full md:bg-white md:shadow-lg md:shadow-violet-500/40">
+          <span
+            className="md:py-1 md:px-3 text-black bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50 md:rounded-full md:bg-white md:shadow-lg md:shadow-violet-500/40 hover:cursor-pointer"
+            onClick={() => setIsModalOpen(true)}
+          >
             Bhavya Dang
           </span>
         </h1>
@@ -74,11 +79,17 @@ export const Hero = () => {
           src="/sync.jpg"
           alt="Hero Image"
           className="rounded-full dark:shadow-[0_0_5rem_-0.5rem_#fff8] shadow-[0_0_5rem_-0.5rem_#000] hero-join-button-dark-i transition-all duration-300 p-[1px]"
-          // Tailwind class to handle responsive sizing
           width={w}
           height={h}
         />
       </div>
+
+      {isModalOpen && (
+        <>
+          <div className="fixed inset-0 bg-black/80 z-40"></div>
+          <AboutMeModal onClose={() => setIsModalOpen(false)} />
+        </>
+      )}
     </div>
   );
 };
