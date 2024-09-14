@@ -59,3 +59,13 @@ export async function fetchProjects() {
   const query = await getDatabase(databaseID);
   return query.results;
 }
+
+export async function fetchBlogs() {
+  const databaseID = process.env.NOTION_BLOGS_DB_ID || ""; // Ensure databaseID is defined
+  const databaseQuery = await getDatabase(
+    databaseID,
+    "Created At",
+    "descending"
+  );
+  return databaseQuery.results;
+}

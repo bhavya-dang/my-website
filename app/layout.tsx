@@ -41,9 +41,10 @@ export const metadata: Metadata = {
     siteName: "Bhavya Dang",
     images: [
       {
-        url: "https://github.com/Sync-Codes/my-website/blob/master/public/bhavyadang.jpeg", // Must be an absolute URL
+        url: "https://github.com/bhavya-dang/my-website/blob/master/public/bhavyadang.jpeg?raw=true", // Use a valid absolute URL for the image
         width: 800,
         height: 600,
+        alt: "Bhavya Dang profile image",
       },
     ],
     locale: "en_IN",
