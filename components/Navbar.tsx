@@ -58,7 +58,7 @@ export const Navbar = () => {
       <Menu />
       <div className="flex items-center gap-3">
         <a href="/" className="lg:hidden font-semibold">
-          <Home size={20} strokeWidth={1} />
+          <Home size={20} strokeWidth={1.8} />
         </a>
         <button className="flex items-center" onClick={handleThemeToggle}>
           {/* <SunIcon className="w-5 h-5" /> */}

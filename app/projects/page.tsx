@@ -1,4 +1,4 @@
-import { fetchProjects } from "@/lib/notion";
+import { fetchProjects } from "@/util/notion/index";
 import ProjectClient from "@/components/ProjectClient";
 
 export default async function ProjectsPage() {

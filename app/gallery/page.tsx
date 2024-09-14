@@ -33,7 +33,7 @@ export default function Gallery() {
       try {
         const response = await fetch("/api/images");
         const data = await response.json();
-        setImages(data);
+        setImages(data.sort(() => Math.random() - 0.5));
       } catch (error) {
         console.error("Failed to fetch images:", error);
       } finally {
@@ -85,21 +85,9 @@ export default function Gallery() {
               <img
                 src={src}
                 alt={`Gallery Image ${index + 1}`}
-                className="object-cover w-full h-full transform transition-transform duration-300 hover:scale-105 cursor-pointer"
+                className="object-cover w-full h-full transform transition-transform duration-300 lg:hover:scale-105 cursor-pointer"
                 style={{ maxHeight: "300px" }}
               />
-
-              {/* Bottom Bar with DeviantArt link */}
-              <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white text-center p-2 transform translate-y-full group-hover:translate-y-0 transition-all duration-300">
-                <a
-                  href="https://www.deviantart.com/syncox" // Link to the DeviantArt
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm"
-                >
-                  View on DeviantArt
-                </a>
-              </div>
             </div>
           ))}
         </div>
@@ -120,7 +108,7 @@ export default function Gallery() {
           className="fixed inset-0 z-50 flex p-4 items-center justify-center bg-black bg-opacity-85"
           onClick={closeModal}
         >
-          <div className="relative p-16 max-w-3xl w-full">
+          <div className="relative p-1 md:p-16 max-w-3xl w-full">
             <img
               src={selectedImage}
               alt="Full-size Gallery Image"

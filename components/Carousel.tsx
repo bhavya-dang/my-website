@@ -69,7 +69,7 @@ export default function ImageCarousel({ items }: ImageCarouselProps) {
               <h1 className="font-bold text-2xl text-black bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50 mb-3">
                 {item.properties.Name.title[0]?.plain_text ?? "No Title"}
               </h1>
-              <p className="text-md text-white/85">
+              <p className="dark:text-white/85 text-[#0b0b0b] text-base">
                 {item.properties.Description.rich_text[0]?.text?.content ??
                   "No description available"}
               </p>

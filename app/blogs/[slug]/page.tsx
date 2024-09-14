@@ -7,6 +7,9 @@ import {
 import moment from "moment";
 import type { Metadata } from "next";
 
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] });
+
 // notion renderer code
 import { NotionRenderer } from "@notion-render/client";
 import hljsPlugin from "@notion-render/hljs-plugin";
@@ -60,10 +63,10 @@ export default async function Blogs({ params }: pageProps) {
   const tags = pageQuery.properties.Tags.multi_select;
 
   return (
-    <section className="m-auto mt-10 ml-6 mr-6 font-inter text-lg">
+    <section className={`m-auto mt-10 ml-6 mr-6 ${inter.className} text-lg`}>
       <div>
         <h1 className="text-4xl font-bold">{title}</h1>
-        <p className="text-sm mt-5 dark:text-white text-black/50 dark:opacity-25 font-mono">
+        <p className="text-sm mt-5 dark:text-white text-black/50 dark:opacity-25">
           {moment(createdAt).format("MMMM DD, YYYY")}
         </p>
         <div className="flex flex-wrap gap-2 mt-2">
