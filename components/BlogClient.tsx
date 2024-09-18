@@ -8,6 +8,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Search, X } from "lucide-react";
+import Image from "next/image";
 const inter = Inter({ subsets: ["latin"] });
 
 export const revalidate = 0; // to prevent hard caching on dev time
@@ -87,9 +88,12 @@ export default function Blogs({ blogs }: { blogs: any[] }) {
             key={blog.id}
           >
             {blog.properties["Files & media"].files[0]?.file.url && (
-              <img
+              <Image
                 src={blog.properties["Files & media"].files[0].file.url}
                 alt="Blog Image"
+                width={300}
+                height={150}
+                // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="w-full md:w-1/5 h-auto object-cover rounded-md mr-5"
               />
             )}

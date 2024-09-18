@@ -5,11 +5,13 @@ import { useState, useEffect } from "react";
 import { getTagColor } from "@/util/functions/index";
 import type { Metadata } from "next";
 import ImageCarousel from "@/components/Carousel";
+// import { StickyScrollRevealDemo } from "./StickyScoll";
 
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 import { Search, X } from "lucide-react";
+import Image from "next/image";
 
 export const revalidate = 0; // to prevent hard caching on dev time
 
@@ -127,6 +129,7 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
         <h1 className="font-bold text-4xl text-slate-950 dark:text-white">
           Projects
         </h1>
+        {/* <StickyScrollRevealDemo /> */}
         {/* search bar on large screens */}
         <div className="hidden md:flex items-center gap-4">
           <button
@@ -164,8 +167,13 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
               key={project.id}
             >
               {project.properties["Image"].files[0]?.file.url && (
-                <img
-                  src={project.properties["Image"].files[0].file.url}
+                <Image
+                  src={
+                    project.properties["Image"].files[0].file.url ??
+                    "http://placehold.co/648x294"
+                  }
+                  width={648}
+                  height={294}
                   alt="Project Image"
                   className="w-full h-auto object-cover rounded-md"
                 />

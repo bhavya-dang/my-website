@@ -1,52 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState, useEffect } from "react";
-import { Inter } from "next/font/google";
 import Image from "next/image";
-
+import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
-
-// CSS for Spinner
-// const spinnerStyles = {
-//   border: "8px solid #f3f3f3",
-//   borderTop: "8px solid #8B5CF6",
-//   borderRadius: "50%",
-//   width: "50px",
-//   height: "50px",
-//   animation: "spin 1s linear infinite",
-// };
-
-// // Keyframes for Spinner Animation
-// const keyframes = `
-//   @keyframes spin {
-//     0% { transform: rotate(0deg); }
-//     100% { transform: rotate(360deg); }
-//   }
-//   `;
-
-// // CSS for Pulse Card Animation
-// const pulseCardStyles = {
-//   width: "100%",
-//   height: "16rem",
-//   backgroundColor: "#333",
-//   borderRadius: "8px",
-//   animation: "pulse 1.5s infinite",
-// };
-
-// // Keyframes for Pulse Animation
-// const keyframes = `
-//   @keyframes pulse {
-//     0% {
-//       background-color: #333;
-//     }
-//     50% {
-//       background-color: #666;
-//     }
-//     100% {
-//       background-color: #666;
-//     }
-//   }
-//   `;
 
 export default function Gallery() {
   const [images, setImages] = useState([]);
@@ -87,17 +44,6 @@ export default function Gallery() {
     setSelectedImage(null);
   };
 
-  // if (loading) {
-  //   return (
-  //     <section className="w-full p-4">
-  //       <style>{keyframes}</style> {/* Include keyframes for spinner */}
-  //       <div className="flex justify-center items-center h-screen">
-  //         <div style={spinnerStyles}></div>
-  //       </div>
-  //     </section>
-  //   );
-  // }
-
   if (loading) {
     return (
       <>
@@ -117,7 +63,7 @@ export default function Gallery() {
               <div
                 key={index}
                 className="relative bg-black/50 rounded-lg animate-pulse"
-                style={{ height: "200px" }} // Adjust the height as needed
+                style={{ height: "200px" }}
               ></div>
             ))}
           </div>
@@ -144,13 +90,10 @@ export default function Gallery() {
               className="relative w-full h-64 overflow-hidden rounded-lg shadow-lg group" // Add group for hover effects
               onClick={() => openModal(src)} // Open modal on click
             >
-              {/* Image */}
               <Image
                 src={src}
                 alt={`Gallery Image ${index + 1}`}
                 className="object-cover w-full h-full transform transition-transform duration-300 lg:hover:scale-105 cursor-pointer"
-                // width={300}
-                // height={300}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
@@ -175,7 +118,7 @@ export default function Gallery() {
           onClick={closeModal}
         >
           <div className="relative p-1 md:p-16 max-w-3xl w-full">
-            <img
+            <Image
               src={selectedImage}
               alt="Full-size Gallery Image"
               className="w-full h-screen object-contain"
