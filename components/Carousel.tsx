@@ -3,6 +3,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { getTagColor } from "@/util/functions";
 import Link from "next/link";
+import Image from "next/image";
 
 type Project = {
   id: string;
@@ -42,6 +43,7 @@ export default function ImageCarousel({ items }: ImageCarouselProps) {
         autoPlay={true}
         showStatus={false}
         interval={6000}
+        swipeable={true}
         onClickItem={(index) => {
           const selectedItem = items[index]; // Use the correct item based on the index
           const demoUrl =
@@ -59,8 +61,13 @@ export default function ImageCarousel({ items }: ImageCarouselProps) {
             className="flex flex-col items-center justify-center"
           >
             <div className="mb-16 h-full overflow-visible">
-              <img
-                src={item.properties.Image.files[0]?.file?.url ?? ""}
+              <Image
+                width={500}
+                height={300}
+                src={
+                  item.properties.Image.files[0]?.file?.url ??
+                  "https://placehold.co/500x300"
+                }
                 alt="Project Image"
                 className="w-full h-auto object-cover rounded-md"
               />
