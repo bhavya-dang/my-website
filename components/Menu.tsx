@@ -56,12 +56,12 @@ const Menu = () => {
               <span>home</span>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild className={dropdownStyles.item}>
+          {/* <DropdownMenuItem asChild className={dropdownStyles.item}>
             <Link href="/blogs" className={dropdownStyles.itemLink}>
               <Feather size={"18px"} strokeWidth={1.5} />
               <span>blogs</span>
             </Link>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
           <DropdownMenuItem asChild className={dropdownStyles.item}>
             <Link href="/gallery" className={dropdownStyles.itemLink}>
               <Images size={"18px"} strokeWidth={1.5} />

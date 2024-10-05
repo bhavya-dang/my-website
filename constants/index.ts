@@ -13,7 +13,7 @@ export const socialLinks = [
 export const navLinks = [
   { href: "/", label: "/home" },
   { href: "/projects", label: "/projects" },
-  { href: "/blogs", label: "/blogs" },
+  // { href: "/blogs", label: "/blogs" },
   { href: "/gallery", label: "/gallery" },
   // { href: "/talks", label: "/talks" },
   {
