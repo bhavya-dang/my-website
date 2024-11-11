@@ -25,6 +25,33 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
   const [showSearch, setShowSearch] = useState(false);
   const [filterTags, setFilterTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    const fetchImages = async () => {
+      try {
+        // Start the interval to show loading animation
+        timer = setTimeout(() => {
+          setLoading(true); // Ensure loading is true during the interval
+        }, 5000); // Update loading state every 500ms
+        const response = await fetch("/api/images");
+        const data = await response.json();
+        setImages(data.projects);
+      } catch (error) {
+        console.error("Failed to fetch images:", error);
+      } finally {
+        // Stop the interval and clear loading state
+        clearTimeout(timer);
+        setLoading(false);
+      }
+    };
+
+    fetchImages();
+    return () => {
+      clearTimeout(timer); // Clear interval on component unmount
+    };
+  }, []);
 
   const handleSearchClick = () => {
     setShowSearch(!showSearch);
@@ -161,17 +188,14 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
         {filteredProjects.length === 0 ? (
           <p className="mt-4">No projects found</p>
         ) : (
-          filteredProjects.map((project: any) => (
+          filteredProjects.map((project: any, index) => (
             <div
               className="card min-h-full min-w-full bg-white/10 backdrop-filter backdrop-blur-lg shadow-md rounded-xl p-4 text-slate-800 dark:text-white border-2 border-white/10 transition duration-300 ease-in-out"
               key={project.id}
             >
-              {project.properties["Image"].files[0]?.file.url && (
+              {images[index] && (
                 <Image
-                  src={
-                    project.properties["Image"].files[0].file.url ??
-                    "http://placehold.co/648x294"
-                  }
+                  src={images[index]}
                   width={648}
                   height={294}
                   alt="Project Image"

@@ -20,7 +20,7 @@ export default function Gallery() {
         }, 5000); // Update loading state every 500ms
         const response = await fetch("/api/images");
         const data = await response.json();
-        setImages(data.sort(() => Math.random() - 0.5));
+        setImages(data.gallery.sort(() => Math.random() - 0.5));
       } catch (error) {
         console.error("Failed to fetch images:", error);
       } finally {

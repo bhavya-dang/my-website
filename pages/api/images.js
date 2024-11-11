@@ -2,29 +2,39 @@ import fs from "fs";
 import path from "path";
 
 export default function handler(req, res) {
-  // Define the path to the images folder
-  const imagesDirectory = path.join(process.cwd(), "public/images");
+  // Define the paths to the gallery and projects folders
+  const galleryDirectory = path.join(process.cwd(), "public/images/gallery");
+  const projectsDirectory = path.join(process.cwd(), "public/images/projects");
 
-  try {
-    // Read all the files in the folder
-    const fileNames = fs.readdirSync(imagesDirectory);
+  // Helper function to read and sort images from a folder
+  const getSortedImages = (directory) => {
+    try {
+      // Read all files in the folder
+      const fileNames = fs.readdirSync(directory);
 
-    // Filter and sort image files
-    const images = fileNames
-      .filter((file) => /\.(jpe?g|png|gif)$/i.test(file))
-      .map((file) => {
-        // Extract number from filename
-        const match = file.match(/(\d+)\.(jpe?g|png|gif)$/i);
-        return match ? { file, number: parseInt(match[1], 10) } : null;
-      })
-      .filter(Boolean) // Remove null values
-      .sort((a, b) => a.number - b.number) // Sort by extracted number
-      .map(({ file }) => `/images/${file}`); // Map to image paths
+      // Filter, sort, and map image files to paths
+      return fileNames
+        .filter((file) => /\.(jpe?g|png|gif|webp|svg)$/i.test(file))
+        .map((file) => {
+          // Extract number from filename
+          const match = file.match(/(\d+)\.(jpe?g|png|gif|webp|svg)$/i);
+          return match ? { file, number: parseInt(match[1], 10) } : null;
+        })
+        .filter(Boolean) // Remove null values
+        .sort((a, b) => a.number - b.number) // Sort by extracted number
+        .map(({ file }) => `/images/${path.basename(directory)}/${file}`); // Map to image paths
+    } catch (error) {
+      console.error(`Error reading ${directory} directory:`, error);
+      return [];
+    }
+  };
 
-    // Return the sorted array of image paths
-    res.status(200).json(images);
-  } catch (error) {
-    console.error("Error reading images directory:", error);
-    res.status(500).json({ error: "Failed to load images" });
-  }
+  // Get sorted images for both folders
+  const images = {
+    gallery: getSortedImages(galleryDirectory),
+    projects: getSortedImages(projectsDirectory),
+  };
+
+  // Return the structured object with both galleries
+  res.status(200).json(images);
 }
