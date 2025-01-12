@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { getTagColor } from "@/util/functions";
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 type Project = {
   id: string;
@@ -33,6 +34,35 @@ interface ImageCarouselProps {
   items: Project[];
 }
 export default function ImageCarousel({ items }: ImageCarouselProps) {
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    const fetchImages = async () => {
+      try {
+        // Start the interval to show loading animation
+        timer = setTimeout(() => {
+          setLoading(true); // Ensure loading is true during the interval
+        }, 5000); // Update loading state every 500ms
+        const response = await fetch("/api/images");
+        const data = await response.json();
+        setImages(data.projects);
+      } catch (error) {
+        console.error("Failed to fetch images:", error);
+      } finally {
+        // Stop the interval and clear loading state
+        clearTimeout(timer);
+        setLoading(false);
+      }
+    };
+
+    fetchImages();
+    return () => {
+      clearTimeout(timer); // Clear interval on component unmount
+    };
+  }, []);
+
   return (
     <div className="container">
       <Carousel
@@ -61,16 +91,15 @@ export default function ImageCarousel({ items }: ImageCarouselProps) {
             className="flex flex-col items-center justify-center"
           >
             <div className="mb-16 h-full overflow-visible">
-              <Image
-                width={500}
-                height={300}
-                src={
-                  item.properties.Image.files[0]?.file?.url ??
-                  "https://placehold.co/500x300"
-                }
-                alt="Project Image"
-                className="w-full h-auto object-cover rounded-md"
-              />
+              {images[index] && (
+                <Image
+                  src={images[index]}
+                  width={648}
+                  height={294}
+                  alt="Project Image"
+                  className="w-full h-auto object-cover rounded-md"
+                />
+              )}
             </div>
             <div className="mb-12">
               <h1 className="font-bold text-2xl text-black bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50 mb-3">
