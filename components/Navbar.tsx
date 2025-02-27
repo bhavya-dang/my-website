@@ -17,7 +17,9 @@ export const Navbar = () => {
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
-
+    if (!storedTheme) {
+      localStorage.setItem("theme", "light");
+    }
     if (storedTheme === "light") {
       setTheme(storedTheme);
     } else {
@@ -40,11 +42,11 @@ export const Navbar = () => {
 
   return (
     <nav className="flex p-4 justify-between font-mono text-slate-800 dark:text-slate-200 items-center mt-2">
-      <ul className="hidden nav-links lg:flex gap-x-1">
+      {/* <ul className="hidden nav-links lg:flex gap-x-1">
         {navLinks.map((link, index) => (
           <li
             key={index}
-            className="px-3 py-1 hover:bg-violet-500 hover:text-white rounded-full"
+            className={`px-3 py-1 ${link.label === "/youtube" ? "hover:bg-red" : "hover:bg-violet-500"} hover:text-white rounded-full`}
           >
             <a
               href={link.href}
@@ -55,9 +57,9 @@ export const Navbar = () => {
             </a>
           </li>
         ))}
-      </ul>
+      </ul> */}
       {/* <FloatingDockDemo /> */}
-      <Menu />
+      <Menu navLinks={navLinks} />
       <div className="flex items-center gap-3">
         <a href="/" className="lg:hidden font-semibold">
           <Home size={20} strokeWidth={1.8} />

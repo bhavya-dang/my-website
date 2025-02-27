@@ -1,3 +1,17 @@
+import {
+  AlignLeft,
+  ExternalLink,
+  Home,
+  Feather,
+  Github,
+  LinkedinIcon,
+  Frame,
+  FileDigit,
+  Images,
+  Mic,
+  Mic2,
+  Youtube,
+} from "lucide-react";
 export const socialLinks = [
   {
     name: "github",
@@ -11,15 +25,20 @@ export const socialLinks = [
 ];
 
 export const navLinks = [
-  { href: "/", label: "/home" },
-  { href: "/projects", label: "/projects" },
-  // { href: "/blogs", label: "/blogs" },
-  { href: "/gallery", label: "/gallery" },
-  // { href: "/talks", label: "/talks" },
+  { href: "/", label: "Home", external: false, icon: Home },
+  { href: "/projects", label: "Projects", external: false, icon: Frame },
+  { href: "/gallery", label: "Gallery", external: false, icon: Images },
   {
     href: "https://bhavya-dang.github.io/resume/",
-    label: "/resume",
+    label: "Resume",
     external: true,
+    icon: FileDigit,
+  },
+  {
+    href: "https://youtube.com/@bhavyadangdev",
+    label: "YouTube",
+    external: true,
+    icon: Youtube,
   },
 ];
 

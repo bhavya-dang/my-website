@@ -19,27 +19,39 @@ import {
   Images,
   Mic,
   Mic2,
+  LucideProps,
 } from "lucide-react";
 
-import React from "react";
+import React, { ForwardRefExoticComponent, RefAttributes } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
-import { socialLinks } from "@/constants/index";
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] });
 
 const dropdownStyles = {
-  item: "h-11 rounded-lg text-md hover:bg-[#212121]",
+  item: "h-11 rounded-lg text-sm hover:bg-stone-200 hover:text-black dark:hover:bg-neutral-700 dark:hover:text-white",
   itemLink: "flex flex-row justify-start items-center gap-3",
   itemLabel: "flex flex-row justify-center items-center gap-2",
 };
 
-const Menu = () => {
+interface NavLinks {
+  navLinks: {
+    href: string;
+    icon: ForwardRefExoticComponent<
+      Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+    >;
+    label: string;
+  }[];
+}
+
+const Menu = ({ navLinks }: NavLinks) => {
   return (
-    <div className="lg:hidden">
+    <div className="">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            className="flex items-center gap-2 rounded-md border-2 bg-white dark:bg-black dark:border-neutral-600 border-neutral-300"
+            className="flex items-center gap-2 rounded-md border-2 bg-white dark:bg-black dark:border-neutral-900 border-neutral-300"
             variant="outline"
             size="icon"
           >
@@ -48,39 +60,34 @@ const Menu = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="min-w-[16rem] font-mono rounded-[0.75rem] ml-14 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-black dark:text-white"
+          className={`min-w-[16rem] rounded-[0.75rem] ml-14 border-neutral-300 dark:border-neutral-900 bg-white dark:bg-black dark:text-white ${inter.className}`}
         >
-          <DropdownMenuItem asChild className={dropdownStyles.item}>
-            <Link href="/" className={dropdownStyles.itemLink}>
-              <Home size={"18px"} strokeWidth={1.5} />
-              <span>home</span>
-            </Link>
-          </DropdownMenuItem>
-          {/* <DropdownMenuItem asChild className={dropdownStyles.item}>
-            <Link href="/blogs" className={dropdownStyles.itemLink}>
-              <Feather size={"18px"} strokeWidth={1.5} />
-              <span>blogs</span>
-            </Link>
-          </DropdownMenuItem> */}
-          <DropdownMenuItem asChild className={dropdownStyles.item}>
-            <Link href="/gallery" className={dropdownStyles.itemLink}>
-              <Images size={"18px"} strokeWidth={1.5} />
-              <span>gallery</span>
-            </Link>
-          </DropdownMenuItem>
-          {/* <DropdownMenuItem asChild className={dropdownStyles.item}>
-            <Link href="/talks" className={dropdownStyles.itemLink}>
-              <Mic2 size={"18px"} strokeWidth={1.5} />
-              <span>talks</span>
-            </Link>
-          </DropdownMenuItem> */}
-          <DropdownMenuItem asChild className={dropdownStyles.item}>
-            <Link href="/projects" className={dropdownStyles.itemLink}>
-              <Frame size={"18px"} strokeWidth={1.5} />
-              <span className={dropdownStyles.itemLabel}>projects</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator className="dark:bg-neutral-600 bg-neutral-300" />
+          {navLinks.map((link, index, array) => {
+            const isExternalLink = link.href.startsWith("http");
+            const nextIsExternalLink =
+              index < array.length - 1 &&
+              array[index + 1].href.startsWith("http");
+
+            return (
+              <React.Fragment key={link.href}>
+                <DropdownMenuItem asChild className={dropdownStyles.item}>
+                  <Link href={link.href} className={dropdownStyles.itemLink}>
+                    <link.icon size="18px" strokeWidth={2} />
+                    <span className={dropdownStyles.itemLabel}>
+                      {link.label}
+                      {isExternalLink && (
+                        <ExternalLink size={11} strokeWidth={2} />
+                      )}
+                    </span>
+                  </Link>
+                </DropdownMenuItem>
+                {!isExternalLink && nextIsExternalLink && (
+                  <DropdownMenuSeparator className="dark:bg-neutral-600 bg-neutral-300" />
+                )}
+              </React.Fragment>
+            );
+          })}
+          {/* <DropdownMenuSeparator className="dark:bg-neutral-600 bg-neutral-300" />
           <DropdownMenuItem asChild className={dropdownStyles.item}>
             <Link
               href="https://bhavya-dang.github.io/resume/"
@@ -93,7 +100,7 @@ const Menu = () => {
                 <ExternalLink size={11} strokeWidth={2} />
               </span>
             </Link>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

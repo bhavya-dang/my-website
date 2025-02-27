@@ -6,7 +6,7 @@ import { socialLinks } from "@/constants/index";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import WorkStatus from "@/components/work-status";
 import { useWindowSize } from "@/app/hooks/useWindowSize";
-import AboutMeModal from "../components/AboutMeModal";
+// import AboutMeModal from "../components/AboutMeModal";
 
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
@@ -41,13 +41,13 @@ export const Hero = () => {
         <h1
           className={`text-3xl lg:text-4xl font-bold  ${inter.className} bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50`}
         >
-          Hi, I&apos;m{" "}
-          <span
+          Hi, I&apos;m Bhavya Dang
+          {/* <span
             className="md:py-1 md:px-3 text-black bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50 md:rounded-full md:bg-white md:shadow-lg md:shadow-violet-500/40 hover:cursor-pointer"
             onClick={() => setIsModalOpen(true)}
           >
             Bhavya Dang
-          </span>
+          </span> */}
         </h1>
 
         <div className="mt-2 flex flex-col items-center md:items-start lg:mt-4">
@@ -84,12 +84,12 @@ export const Hero = () => {
         />
       </div>
 
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <>
           <div className="fixed inset-0 bg-black/80 z-40"></div>
           <AboutMeModal onClose={() => setIsModalOpen(false)} />
         </>
-      )}
+      )} */}
     </div>
   );
 };
