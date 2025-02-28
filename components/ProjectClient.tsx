@@ -75,16 +75,16 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
         .toLowerCase()
         .includes(searchQuery.toLowerCase()) ||
       project.properties.Tags.multi_select.some((tag: any) =>
-        tag.name.toLowerCase().includes(searchQuery.toLowerCase())
+        tag.name.toLowerCase().includes(searchQuery.toLowerCase()),
       );
 
-    const matchesTags =
-      filterTags.length === 0 ||
-      project.properties.Tags.multi_select.some((tag: any) =>
-        filterTags.includes(tag.name)
-      );
+    // const matchesTags =
+    //   filterTags.length === 0 ||
+    //   project.properties.Tags.multi_select.some((tag: any) =>
+    //     filterTags.includes(tag.name)
+    //   );
 
-    return matchesSearchQuery && matchesTags;
+    return matchesSearchQuery;
   });
 
   if (loading) {
@@ -115,7 +115,7 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
                 type="text"
                 placeholder="Search projects"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => setSearchQuery(e.target.value as string)}
                 className={`p-1 md:p-2 rounded-full text-base text-black w-auto focus:outline-none selection:bg-black selection:text-white`}
               />
             </div>
@@ -221,12 +221,12 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
                           <span
                             key={index}
                             className={`text-sm text-white ${getTagColor(
-                              tag.color
+                              tag.color,
                             )} rounded-full px-2 py-1 mr-2`}
                           >
                             {tag.name}
                           </span>
-                        )
+                        ),
                       )}
                   </p>
                   <p className="links flex items-center gap-2">

@@ -38,17 +38,24 @@ export const Hero = () => {
 
       {/* Text Section */}
       <div className="w-full md:w-1/2 md:ml-3 flex flex-col items-center md:items-start lg:ml-32 text-center md:text-left mt-2 md:mt-0">
-        <h1
-          className={`text-3xl lg:text-4xl font-bold  ${inter.className} bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50`}
-        >
-          Hi, I&apos;m Bhavya Dang
-          {/* <span
-            className="md:py-1 md:px-3 text-black bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50 md:rounded-full md:bg-white md:shadow-lg md:shadow-violet-500/40 hover:cursor-pointer"
-            onClick={() => setIsModalOpen(true)}
+        <div className="flex">
+          <h1
+            className={`text-5xl lg:text-4xl font-extrabold  ${inter.className}`}
+          >
+            Hi 👋, I&apos;m&nbsp;{" "}
+          </h1>
+          <h1
+            className={`text-5xl lg:text-4xl font-extrabold  ${inter.className} bg-clip-text text-transparent bg-gradient-to-b from-violet-500 to-violet-300/[0.6] dark:from-violet-500 dark:to-violet-300 bg-opacity-50`}
           >
             Bhavya Dang
-          </span> */}
-        </h1>
+            {/* <span
+              className="md:py-1 md:px-3 text-black bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50 md:rounded-full md:bg-white md:shadow-lg md:shadow-violet-500/40 hover:cursor-pointer"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Bhavya Dang
+            </span> */}
+          </h1>
+        </div>
 
         <div className="mt-2 flex flex-col items-center md:items-start lg:mt-4">
           <div className="flex items-center justify-center">
@@ -74,7 +81,7 @@ export const Hero = () => {
       </div>
 
       {/* Image Section for larger screens */}
-      <div className="hidden w-full md:w-1/2 md:flex justify-center">
+      <div className="hidden w-full md:w-1/2 md:flex justify-center ml-32">
         <Image
           src="/sync.jpg"
           alt="Hero Image"
