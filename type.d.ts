@@ -18,3 +18,13 @@ export type MultiSelect = {
   name: string;
   color: string;
 };
+
+export type ExternalLinkType = {
+  url?: string;
+  label?: string;
+};
+
+export type NavLink = {
+  href: string;
+  label: string;
+};

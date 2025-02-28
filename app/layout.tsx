@@ -32,7 +32,10 @@ import { Analytics } from "@vercel/analytics/react";
 // const initialTheme: string = determineInitialTheme();
 
 export const metadata: Metadata = {
-  title: "Bhavya Dang",
+  title: {
+    template: "%s | Bhavya Dang",
+    default: "Bhavya Dang",
+  },
   description: "Bhavya Dang | Full Stack Developer",
   openGraph: {
     title: "Bhavya Dang",
@@ -61,8 +64,12 @@ export default function RootLayout({
     <html lang="en" className="">
       <head>
         <link rel="icon" href="/terminal.svg" sizes="any" />
+        <link
+          href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+          rel="stylesheet"
+        />
       </head>
-      <body className="font-mono m-auto bg-slate-200 dark:bg-black selection:bg-white selection:text-violet-900">
+      <body className="m-auto bg-white dark:bg-black selection:bg-white selection:text-violet-900 px-36 overflow-y-hidden">
         <Navbar />
         {children}
         <Analytics />

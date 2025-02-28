@@ -4,13 +4,12 @@ import { useScramble } from "use-scramble";
 import { useEffect, useState } from "react";
 
 const roles = [
-  "Web Developer",
-  "UI/UX Designer",
-  "OSS Contributor",
+  "Developer",
+  "Designer",
   "Bibliophile",
   "Editor",
   "Tech Enthusiast",
-  "Student",
+  "Creator",
   "Gamer",
   "Nerd",
   "Weeb",

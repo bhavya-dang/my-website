@@ -47,7 +47,7 @@ interface NavLinks {
 
 const Menu = ({ navLinks }: NavLinks) => {
   return (
-    <div className="">
+    <div className="lg:hidden md:hidden">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button

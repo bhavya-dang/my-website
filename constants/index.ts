@@ -1,3 +1,4 @@
+import { ExternalLinkType, NavLink } from "@/type";
 import {
   AlignLeft,
   ExternalLink,
@@ -12,34 +13,32 @@ import {
   Mic2,
   Youtube,
 } from "lucide-react";
-export const socialLinks = [
+
+export const externalLinks: ExternalLinkType[] = [
   {
-    name: "github",
+    label: "Github",
     url: "https://github.com/bhavya-dang",
   },
 
   {
-    name: "linkedin",
+    label: "LinkedIn",
     url: "https://www.linkedin.com/in/bhavya-dang-27506b223/",
+  },
+  {
+    url: "https://bhavya-dang.github.io/resume/",
+    label: "Resume",
+  },
+  {
+    url: "https://youtube.com/@bhavyadangdev",
+    label: "Youtube",
   },
 ];
 
-export const navLinks = [
-  { href: "/", label: "Home", external: false, icon: Home },
-  { href: "/projects", label: "Projects", external: false, icon: Frame },
-  { href: "/gallery", label: "Gallery", external: false, icon: Images },
-  {
-    href: "https://bhavya-dang.github.io/resume/",
-    label: "Resume",
-    external: true,
-    icon: FileDigit,
-  },
-  {
-    href: "https://youtube.com/@bhavyadangdev",
-    label: "YouTube",
-    external: true,
-    icon: Youtube,
-  },
+export const navLinks: NavLink[] = [
+  { href: "/projects", label: "Projects" },
+  { href: "/work", label: "Work" },
+  { href: "https://wiki.bhavyadang.dev", label: "Wiki" },
+  { href: "/gallery", label: "Gallery" },
 ];
 
 export const notionColors: {

@@ -1,14 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import RoleScramble from "../app/roles";
-import { socialLinks } from "@/constants/index";
+import { externalLinks } from "@/constants/index";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import WorkStatus from "@/components/work-status";
 import { useWindowSize } from "@/app/hooks/useWindowSize";
+// import "boxicons";
 // import AboutMeModal from "../components/AboutMeModal";
 
 import { Inter } from "next/font/google";
+import { FileUser } from "lucide-react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const Hero = () => {
@@ -18,13 +20,13 @@ export const Hero = () => {
   const getImageSize = (): { w: number; h: number } => {
     if (width && width < 640) return { w: 200, h: 200 };
     if (width && width >= 640 && width < 1024) return { w: 350, h: 350 };
-    return { w: 450, h: 450 };
+    return { w: 360, h: 360 };
   };
 
   const { w, h } = getImageSize();
 
   return (
-    <div className="flex flex-col md:flex-row items-center md:items-center gap-y-4 justify-center h-screen px-2 lg:mr-12 md:px-6 -mt-20">
+    <div className="flex flex-col md:flex-row items-center md:items-center gap-y-4 justify-center h-screen px-2 lg:mr-12 md:px-6 -mt-20 ">
       {/* Small Hero for Mobile */}
       <div className="small-hero w-full md:hidden flex justify-center mb-4">
         <Image
@@ -37,7 +39,7 @@ export const Hero = () => {
       </div>
 
       {/* Text Section */}
-      <div className="w-full md:w-1/2 md:ml-3 flex flex-col items-center md:items-start lg:ml-32 text-center md:text-left mt-2 md:mt-0">
+      <div className="w-full md:w-1/2 md:ml-3 flex flex-col items-center md:items-start lg:ml-[7.5rem] text-center md:text-left mt-2 md:mt-0">
         <div className="flex">
           <h1
             className={`text-5xl lg:text-4xl font-extrabold  ${inter.className}`}
@@ -45,15 +47,14 @@ export const Hero = () => {
             Hi 👋, I&apos;m&nbsp;{" "}
           </h1>
           <h1
-            className={`text-5xl lg:text-4xl font-extrabold  ${inter.className} bg-clip-text text-transparent bg-gradient-to-b from-violet-500 to-violet-300/[0.6] dark:from-violet-500 dark:to-violet-300 bg-opacity-50`}
+            className={`text-5xl lg:text-4xl font-extrabold  ${inter.className} bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:text-white bg-opacity-50`}
           >
-            Bhavya Dang
-            {/* <span
-              className="md:py-1 md:px-3 text-black bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50 md:rounded-full md:bg-white md:shadow-lg md:shadow-violet-500/40 hover:cursor-pointer"
-              onClick={() => setIsModalOpen(true)}
-            >
-              Bhavya Dang
-            </span> */}
+            Bhavya
+          </h1>
+          <h1
+            className={`text-5xl lg:text-4xl font-extrabold  ${inter.className}`}
+          >
+            .
           </h1>
         </div>
 
@@ -62,15 +63,20 @@ export const Hero = () => {
             <RoleScramble className="font-mono italic text-2xl md:text-xl lg:text-2xl mt-2 font-semibold text-neutral-500" />
           </div>
 
-          {/* Social Links */}
-          <ul className="social-links flex gap-x-4 mt-4">
-            {socialLinks.map((s, i) => (
+          {/* external links */}
+          <ul className="external-links flex items-start gap-x-4 mt-4">
+            {externalLinks.map((s, i) => (
               <li key={i}>
                 <a href={s.url} target="_blank" rel="noopener noreferrer">
-                  {s.name === "github" ? (
+                  {s.label === "Github" ? (
                     <GitHubLogoIcon className="w-5 h-5 opacity-100 hover:opacity-80 transition ease-linear duration-150" />
-                  ) : (
+                  ) : s.label === "LinkedIn" ? (
                     <LinkedInLogoIcon className="w-5 h-5 opacity-100 hover:opacity-80 transition ease-linear duration-150" />
+                  ) : s.label === "Youtube" ? (
+                    // <Youtube className="w-5 h-5 opacity-100 hover:opacity-80 transition ease-linear duration-150" />
+                    <i className="bx bxl-youtube text-2xl"></i>
+                  ) : (
+                    <FileUser className="w-5 h-5 opacity-100 hover:opacity-80 transition ease-linear duration-150" />
                   )}
                 </a>
               </li>
@@ -81,13 +87,15 @@ export const Hero = () => {
       </div>
 
       {/* Image Section for larger screens */}
-      <div className="hidden w-full md:w-1/2 md:flex justify-center ml-32">
+      <div className="hidden w-full md:w-1/2 md:flex justify-center ml-96">
         <Image
           src="/sync.jpg"
           alt="Hero Image"
-          className="rounded-full dark:shadow-[0_0_5rem_-0.5rem_#fff8] shadow-[0_0_5rem_-0.5rem_#000] hero-join-button-dark-i transition-all duration-300 p-[1px]"
+          className="rounded-full p-[1px] dark:shadow-[0_0_5rem_-0.5rem_#fff8] shadow-[0_0_5rem_-0.5rem_#000] hero-join-button-dark-i transition-all duration-300"
           width={w}
           height={h}
+          priority
+          quality={90}
         />
       </div>
 
