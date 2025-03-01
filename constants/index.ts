@@ -38,7 +38,7 @@ export const navLinks: NavLink[] = [
   { href: "/projects", label: "Projects" },
   { href: "/work", label: "Work" },
   { href: "https://wiki.bhavyadang.dev", label: "Wiki" },
-  { href: "/gallery", label: "Gallery" },
+  { href: "/art", label: "Art" },
 ];
 
 export const notionColors: {

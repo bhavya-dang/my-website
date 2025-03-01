@@ -3,9 +3,15 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Inter } from "next/font/google";
+import { Metadata } from "next";
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Gallery() {
+export const generateMetadata = (): Metadata => ({
+  title: "Art",
+  description: "Explore my art.",
+});
+
+export default function ArtClient() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null); // For modal
@@ -47,22 +53,24 @@ export default function Gallery() {
   if (loading) {
     return (
       <>
-        <section className={`w-full pt-[1.25rem] px-7 ${inter.className}`}>
+        <section className={`w-full py-5 px-36 mt-12 ${inter.className}`}>
           <div className="mb-8">
             <h1
-              className={`text-4xl font-bold text-left mb-3 ${inter.className} bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50`}
+              className={`font-extrabold text-6xl text-slate-950 dark:text-white leading-tight ${inter.className} `}
             >
-              Art Gallery
+              Art.
             </h1>
-            <p className="text-2xl">Some of the fanarts I made</p>
+            <p className="text-lg text-slate-700 dark:text-slate-300 mt-4">
+              I had a phase when I made a lot of art. Now I lost my powers 😔
+            </p>
           </div>
         </section>
-        <section className="w-full px-4 py-2">
+        <section className="w-full px-36 py-2">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-fr grid-flow-dense">
-            {Array.from({ length: 8 }).map((_, index) => (
+            {Array.from({ length: 12 }).map((_, index) => (
               <div
                 key={index}
-                className="relative bg-black/50 rounded-lg animate-pulse"
+                className="relative dark:bg-white/10 rounded-lg animate-pulse"
                 style={{ height: "200px" }}
               ></div>
             ))}
@@ -74,14 +82,16 @@ export default function Gallery() {
 
   return (
     <>
-      <section className={`w-full py-5 px-7 ${inter.className}`}>
+      <section className={`w-full py-5 px-36 mt-12 ${inter.className}`}>
         <div className="mb-8">
           <h1
-            className={`text-4xl font-bold text-left mb-3 ${inter.className} bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50`}
+            className={`font-extrabold text-6xl text-slate-950 dark:text-white leading-tight ${inter.className} `}
           >
-            Art Gallery
+            Art.
           </h1>
-          <p className="text-2xl">Some of the fanarts I made</p>
+          <p className="text-lg text-slate-700 dark:text-slate-300 mt-4">
+            I had a phase when I made a lot of art. Now I lost my powers 😔
+          </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-fr grid-flow-dense">
           {images.map((src, index) => (

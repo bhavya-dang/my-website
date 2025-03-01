@@ -28,3 +28,8 @@ export type NavLink = {
   href: string;
   label: string;
 };
+
+export type TimelineEntry = {
+  title: string;
+  content: React.ReactNode;
+};

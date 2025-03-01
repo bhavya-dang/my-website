@@ -4,33 +4,6 @@ import type { Metadata } from "next";
 import { Navbar } from "../components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
 
-// const determineInitialTheme = (): string => {
-//   // Check if the user has a stored preference in localStorage
-//   const storedTheme = localStorage.getItem("theme");
-
-//   // If there is a stored preference, use it
-//   if (storedTheme) {
-//     console.log("storedTheme: ", storedTheme);
-//     return storedTheme;
-//   }
-
-//   // If not, check the user's system preference
-//   const systemDarkMode = window.matchMedia(
-//     "(prefers-color-scheme: dark)"
-//   ).matches;
-
-//   // Use the system preference if available
-//   if (systemDarkMode) {
-//     return "dark";
-//   }
-
-//   // Fallback to a default theme if none of the above conditions are met
-//   return "light";
-// };
-
-// // Usage example
-// const initialTheme: string = determineInitialTheme();
-
 export const metadata: Metadata = {
   title: {
     template: "%s | Bhavya Dang",
@@ -40,11 +13,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Bhavya Dang",
     description: "Bhavya Dang | Full Stack Developer",
-    url: "https://bhavyadang.tech",
+    url: "https://bhavyadang.in",
     siteName: "Bhavya Dang",
     images: [
       {
-        url: "https://github.com/bhavya-dang/my-website/blob/master/public/bhavyadang.jpeg?raw=true", // Use a valid absolute URL for the image
+        url: "https://github.com/bhavya-dang/my-website/blob/master/public/bhavyadang.jpeg?raw=true",
         width: 800,
         height: 600,
         alt: "Bhavya Dang profile image",
@@ -69,7 +42,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="m-auto bg-white dark:bg-black selection:bg-white selection:text-violet-900 px-36 overflow-y-hidden">
+      <body className="m-auto bg-white dark:bg-black selection:bg-white selection:text-violet-900 px-36">
         <Navbar />
         {children}
         <Analytics />

@@ -1,5 +1,3 @@
-## Todos
+# [bhavyadang.in](https://bhavyadang.in)
 
-- [ ] fix spacing issue in projects section
-- [ ] add images in the cards
-- [ ] start with the responsive design
+![Next.js](https://img.shields.io/badge/Next.js-green?style=for-the-badge&logo=next.js&logoColor=white) ![Notion](https://img.shields.io/badge/notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white) ![Typescript](https://img.shields.io/badge/typescript-%233178c6.svg?style=for-the-badge&logo=typescript&logoColor=white) ![Nextra](https://img.shields.io/badge/nextra-%23000000.svg?style=for-the-badge&logo=nextra&logoColor=white) ![Tailwind](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
