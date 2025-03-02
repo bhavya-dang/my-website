@@ -46,11 +46,20 @@ module.exports = {
       animation: {
         "spin-slow": "spin 3s linear infinite",
         wiggle: "wiggle 1s linear infinite",
+        shimmer: "shimmer 2s linear infinite",
       },
       keyframes: {
         wiggle: {
           "0%, 100%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" },
+        },
+        shimmer: {
+          from: {
+            backgroundPosition: "0 0",
+          },
+          to: {
+            backgroundPosition: "-200% 0",
+          },
         },
       },
     },

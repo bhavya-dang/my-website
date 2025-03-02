@@ -96,6 +96,7 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
           </div>
           <p className="text-lg text-slate-700 dark:text-slate-300 mt-4 max-w-lg">
             I like to build things. Always up for learning something new.
+            Currently learning Rust, Go, and Redis.
           </p>
           <div className="flex items-center gap-4 w-full mt-4">
             <div className="relative flex-1 flex justify-between">
@@ -167,7 +168,7 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
             {currentProjects.map((project: any) => (
               <div key={project.id} className="w-full">
-                <div className="card bg-white/10 dark:bg-black dark:border-white/10 rounded-xl p-4 text-slate-800 dark:text-white border border-white/10 transition duration-300 ease-in-out h-full flex flex-col">
+                <div className="card bg-white/10 dark:bg-black dark:border-white/10 rounded-xl p-4 text-slate-800 dark:text-white border border-black/10 transition duration-300 ease-in-out h-full flex flex-col">
                   {/* Flex container ensures proper spacing */}
                   <div className="flex flex-col flex-grow">
                     <h1 className="text-xl font-semibold mt-3">
@@ -242,9 +243,9 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
           </div>
         )}
       </div>
-      <div className="mt-4 flex items-center justify-center gap-y-4 lg:hidden">
+      {/* <div className="mt-4 flex items-center justify-center gap-y-4 lg:hidden">
         <ImageCarousel items={projects} />
-      </div>
+      </div> */}
     </section>
   );
 }

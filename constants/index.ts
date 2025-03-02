@@ -36,8 +36,8 @@ export const externalLinks: ExternalLinkType[] = [
 
 export const navLinks: NavLink[] = [
   { href: "/projects", label: "Projects" },
-  { href: "/work", label: "Work" },
-  { href: "https://wiki.bhavyadang.dev", label: "Wiki" },
+  { href: "/journey", label: "Journey" },
+  { href: "https://wiki.bhavyadang.in", label: "Wiki" },
   { href: "/art", label: "Art" },
 ];
 
