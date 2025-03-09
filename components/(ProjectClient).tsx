@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+// WITH FILTER BY TAGS
 "use client";
 
 import { useState, useEffect } from "react";
@@ -27,6 +28,39 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
   const [filterTags, setFilterTags] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const [tagInput, setTagInput] = useState<string>("");
+  const [availableTags, setAvailableTags] = useState<string[]>([]);
+
+  useEffect(() => {
+    // Extract all unique tags from projects
+    const tags = Array.from(
+      new Set(
+        projects.flatMap((project) =>
+          project.properties.Tags.multi_select.map((tag: any) => tag.name)
+        )
+      )
+    );
+    setAvailableTags(tags);
+  }, [projects]);
+
+  const handleTagSelect = (tag: string) => {
+    if (!filterTags.includes(tag)) {
+      setFilterTags([...filterTags, tag]);
+    }
+    setTagInput("");
+  };
+
+  const handleTagRemove = (tag: string) => {
+    setFilterTags(filterTags.filter((t) => t !== tag));
+  };
+
+  const filteredProjects = projects.filter(
+    (project) =>
+      filterTags.length === 0 ||
+      filterTags.every((tag) =>
+        project.properties.Tags.multi_select.some((t: any) => t.name === tag)
+      )
+  );
 
   useEffect(() => {
     const handleEscKeyPress = (event: KeyboardEvent) => {
@@ -54,20 +88,20 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
     return () => clearTimeout(timer);
   }, []);
 
-  const filteredProjects = projects.filter((project) => {
-    const matchesSearchQuery =
-      project.properties.Name.title[0].plain_text
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase()) ||
-      project.properties.Description.rich_text[0]?.text.content
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase()) ||
-      project.properties.Tags.multi_select.some((tag: any) =>
-        tag.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+  // const filteredProjects = projects.filter((project) => {
+  //   const matchesSearchQuery =
+  //     project.properties.Name.title[0].plain_text
+  //       .toLowerCase()
+  //       .includes(searchQuery.toLowerCase()) ||
+  //     project.properties.Description.rich_text[0]?.text.content
+  //       .toLowerCase()
+  //       .includes(searchQuery.toLowerCase()) ||
+  //     project.properties.Tags.multi_select.some((tag: any) =>
+  //       tag.name.toLowerCase().includes(searchQuery.toLowerCase())
+  //     );
 
-    return matchesSearchQuery;
-  });
+  //   return matchesSearchQuery;
+  // });
 
   const projectsPerPage = 6;
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
@@ -115,25 +149,47 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
           </p>
           <div className="flex items-center gap-4 w-full mt-4">
             <div className="relative flex-1 flex justify-between">
-              <div className="w-[42%]">
+              {/* <div className="w-[42%]"> */}
+              <div className="mt-4 relative w-1/2">
                 <input
                   type="text"
-                  placeholder="Search projects"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg dark:bg-black border border-black/20 bg-white dark:border-white/20 text-black dark:placeholder-gray focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder-black/40 dark:text-white/50"
+                  placeholder="Type to filter by tag"
+                  value={tagInput}
+                  onChange={(e) => setTagInput(e.target.value)}
+                  className="w-full px-4 py-2 rounded-lg dark:bg-black border border-black/20 bg-white dark:border-white/20 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-black transition-all"
                 />
-                <div className="absolute left-[40%] top-1/2 -translate-y-1/2 flex items-center gap-2 pr-3">
-                  {searchQuery ? (
-                    <X
-                      className="h-4 w-4 text-gray-500 cursor-pointer"
-                      onClick={() => setSearchQuery("")}
-                    />
-                  ) : (
-                    <Search className="h-4 w-4 text-gray-500" />
-                  )}
-                </div>
+                {tagInput && (
+                  <div className="absolute top-full left-0 w-full bg-white dark:bg-black border border-gray-300 dark:border-gray-700 rounded-md shadow-md mt-1 z-10">
+                    {availableTags
+                      .filter((tag) =>
+                        tag.toLowerCase().includes(tagInput.toLowerCase())
+                      )
+                      .map((tag) => (
+                        <div
+                          key={tag}
+                          className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 cursor-pointer"
+                          onClick={() => handleTagSelect(tag)}
+                        >
+                          {tag}
+                        </div>
+                      ))}
+                  </div>
+                )}
               </div>
+            </div>
+            <div className="mt-4 flex gap-2 flex-wrap">
+              {filterTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="flex items-center bg-black text-white dark:bg-white dark:text-black px-3 py-1 rounded-full"
+                >
+                  {tag}
+                  <X
+                    className="ml-2 cursor-pointer"
+                    onClick={() => handleTagRemove(tag)}
+                  />
+                </span>
+              ))}
               <div className="flex gap-x-2">
                 <ChevronLeft
                   className="w-10 h-10 bg-black rounded-full p-2 text-white dark:text-black dark:bg-white cursor-pointer"

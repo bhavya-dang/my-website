@@ -1,19 +1,4 @@
 import React from "react";
-
-import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-
 const WorkStatus = () => {
   return (
     <div className="flex items-center gap-x-2 mt-5 ml-3 md:ml-0 md:text-left">

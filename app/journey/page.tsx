@@ -17,7 +17,7 @@ interface ExperienceProps {
   techStack: string[];
 }
 
-export const ExperienceCard = ({
+const ExperienceCard = ({
   title,
   company,
   companyLink,
@@ -329,7 +329,8 @@ const experiences = [
     ],
   },
 ];
-export default function JourneyPage() {
+
+export default async function JourneyPage() {
   return (
     <div className="px-6 md:px-20">
       <Timeline

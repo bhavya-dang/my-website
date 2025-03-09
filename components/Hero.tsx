@@ -28,6 +28,7 @@ export const Hero = () => {
   return (
     <div className="flex flex-col md:flex-row items-center md:items-center gap-y-4 justify-center h-screen px-2 lg:mr-12 md:px-6 -mt-28">
       {/* Small Hero for Mobile */}
+
       <div className="small-hero w-full md:hidden flex justify-center mb-4">
         <Image
           src="/sync.jpg"

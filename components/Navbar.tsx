@@ -5,11 +5,8 @@ import { SunIcon, MoonIcon, HomeIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import Menu from "./Menu";
 import { navLinks } from "@/constants";
-import { Home } from "lucide-react";
-import { FloatingDockDemo } from "./FloatingDock";
 
 import { Inter } from "next/font/google";
-import Image from "next/image";
 const inter = Inter({ subsets: ["latin"] });
 
 export const Navbar = () => {
@@ -71,15 +68,6 @@ export const Navbar = () => {
           )}
         </button>
       </div>
-      {/* <FloatingDockDemo /> */}
-
-      {/* <div className="flex items-center gap-3"> */}
-      {/* <a href="/" className="lg:hidden font-semibold">
-          <Home size={20} strokeWidth={1.8} />
-        </a> */}
-
-      {/* <Menu navLinks={navLinks} /> */}
-      {/* </div> */}
     </nav>
   );
 };
