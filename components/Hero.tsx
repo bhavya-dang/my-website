@@ -6,6 +6,12 @@ import { socialLinks } from "@/constants/index";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import WorkStatus from "@/components/work-status";
 import { useWindowSize } from "@/app/hooks/useWindowSize";
+import { Button } from "@/components/ui/button";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 // import AboutMeModal from "../components/AboutMeModal";
 
 import { Inter } from "next/font/google";
@@ -77,6 +83,20 @@ export const Hero = () => {
             ))}
           </ul>
           <WorkStatus />
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <Button
+                variant="link"
+                className={`-ml-5 text-red ${inter.className}`}
+              >
+                🚫 Important
+              </Button>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              Currently working on a revamp of this site. So a lot of things are
+              going to break
+            </HoverCardContent>
+          </HoverCard>
         </div>
       </div>
 
