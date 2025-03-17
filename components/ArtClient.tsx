@@ -14,7 +14,23 @@ export const generateMetadata = (): Metadata => ({
 export default function ArtClient() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null); // For modal
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleEscKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && selectedImage) {
+        closeModal();
+      }
+    };
+
+    if (selectedImage) {
+      window.addEventListener("keydown", handleEscKey);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleEscKey);
+    };
+  }, [selectedImage]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -44,29 +60,31 @@ export default function ArtClient() {
 
   const openModal = (src: string) => {
     setSelectedImage(src);
+    document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
   };
 
   const closeModal = () => {
     setSelectedImage(null);
+    document.body.style.overflow = "unset"; // Re-enable scrolling
   };
 
   if (loading) {
     return (
       <>
-        <section className={`w-full py-5 px-36 mt-12 ${inter.className}`}>
+        <section
+          className={`m-auto mt-6 md:mt-12 p-4 md:px-8 lg:px-16 xl:px-36 ${inter.className}`}
+        >
           <div className="mb-8">
-            <h1
-              className={`font-extrabold text-6xl text-slate-950 dark:text-white leading-tight ${inter.className} `}
-            >
+            <h1 className="font-extrabold text-4xl md:text-5xl lg:text-6xl text-slate-950 dark:text-white leading-tight">
               Art.
             </h1>
-            <p className="text-lg text-slate-700 dark:text-slate-300 mt-4">
+            <p className="text-base md:text-lg text-slate-700 dark:text-slate-300 mt-2 md:mt-4">
               I had a phase when I made a lot of art. Now I lost my powers 😔
             </p>
           </div>
         </section>
-        <section className="w-full px-36 py-2">
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-fr grid-flow-dense">
+        <section className="px-4 md:px-8 lg:px-16 xl:px-36 py-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {Array.from({ length: 12 }).map((_, index) => (
               <div
                 key={index}
@@ -82,39 +100,42 @@ export default function ArtClient() {
 
   return (
     <>
-      <section className={`w-full py-5 px-36 mt-12 ${inter.className}`}>
+      <section
+        className={`m-auto mt-6 md:mt-12 p-4 md:px-8 lg:px-16 xl:px-36 ${inter.className}`}
+      >
         <div className="mb-8">
-          <h1
-            className={`font-extrabold text-6xl text-slate-950 dark:text-white leading-tight ${inter.className} `}
-          >
+          <h1 className="font-extrabold text-4xl md:text-5xl lg:text-6xl text-slate-950 dark:text-white leading-tight">
             Art.
           </h1>
-          <p className="text-lg text-slate-700 dark:text-slate-300 mt-4">
+          <p className="text-base md:text-lg text-slate-700 dark:text-slate-300 mt-2 md:mt-4">
             I had a phase when I made a lot of art. Now I lost my powers 😔
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-fr grid-flow-dense">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {images.map((src, index) => (
             <div
               key={index}
-              className="relative w-full h-64 overflow-hidden rounded-lg shadow-lg group" // Add group for hover effects
-              onClick={() => openModal(src)} // Open modal on click
+              className="relative w-full aspect-square overflow-hidden rounded-lg shadow-lg group cursor-pointer"
+              onClick={() => openModal(src)}
             >
               <Image
                 src={src}
                 alt={`Gallery Image ${index + 1}`}
-                className="object-cover w-full h-full transform transition-transform duration-300 lg:hover:scale-105 cursor-pointer"
+                className="object-cover w-full h-full transform transition-transform duration-300 group-hover:scale-105"
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                priority={index < 4} // Load first 4 images immediately
               />
             </div>
           ))}
         </div>
-        <p className="mt-5 mb-2 text-xl italic font-medium">
+        <p className="mt-6 md:mt-8 mb-2 text-lg md:text-xl italic font-medium">
           Check out more on my{" "}
           <a
             href="https://www.deviantart.com/syncox"
-            className="text-violet-500"
+            className="text-violet-500 hover:text-violet-600 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             deviantart
           </a>
@@ -124,15 +145,38 @@ export default function ArtClient() {
       {/* Modal for full-sized image */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 flex p-4 items-center justify-center bg-black bg-opacity-85"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 md:p-8 cursor-pointer"
           onClick={closeModal}
         >
-          <div className="relative p-1 md:p-16 max-w-3xl w-full">
-            <Image
+          <div
+            className="relative w-full h-full flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
               src={selectedImage}
               alt="Full-size Gallery Image"
-              className="w-full h-screen object-contain"
+              className="max-h-[90vh] max-w-[90vw] object-contain cursor-auto"
             />
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-white/80 hover:text-white p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+              aria-label="Close modal"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
         </div>
       )}

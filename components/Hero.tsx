@@ -35,33 +35,28 @@ export const Hero = () => {
           height={200}
           width={200}
           alt="Hero Image"
-          className="rounded-full dark:shadow-[0_0_5rem_-0.5rem_#fff8] shadow-[0_0_5rem_-0.5rem_#000] hero-join-button-dark-i transition-all duration-300"
+          className="rounded-full dark:shadow-[0_0_1rem_-0.1rem_#fff8] shadow-[0_0_1rem_-0.1rem_#000] hero-join-button-dark-i transition-all duration-300"
         />
       </div>
 
       {/* Text Section */}
       <div className="w-full md:w-1/2 md:ml-3 flex flex-col items-center md:items-start lg:ml-[7.5rem] text-center md:text-left mt-2 md:mt-0">
-        <div className="flex">
+        <div className="flex items-center whitespace-nowrap">
           <h1
-            className={`text-5xl lg:text-4xl font-extrabold  ${inter.className}`}
+            className={`text-2xl lg:text-4xl font-extrabold ${inter.className}`}
           >
-            Hi 👋, I&apos;m&nbsp;{" "}
+            Hi 👋, I&apos;m&nbsp;
           </h1>
           <h1
-            className={`text-5xl lg:text-4xl font-extrabold  ${inter.className} bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:text-white bg-opacity-50`}
+            className={`text-2xl lg:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:text-white bg-opacity-50 ${inter.className}`}
           >
-            Bhavya
-          </h1>
-          <h1
-            className={`text-5xl lg:text-4xl font-extrabold  ${inter.className}`}
-          >
-            .
+            Bhavya.
           </h1>
         </div>
 
         <div className="mt-2 flex flex-col items-center md:items-start lg:mt-4">
           <div className="flex items-center justify-center">
-            <RoleScramble className="font-mono italic text-2xl md:text-xl lg:text-2xl mt-2 font-semibold text-neutral-500" />
+            <RoleScramble className="font-mono italic text-md md:text-xl lg:text-2xl mt-2 font-semibold text-neutral-500 whitespace-nowrap" />
           </div>
 
           {/* external links */}
@@ -83,7 +78,7 @@ export const Hero = () => {
               </li>
             ))}
           </ul>
-          <WorkStatus />
+          <WorkStatus className="hidden md:flex" />
         </div>
       </div>
 
