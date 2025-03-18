@@ -25,7 +25,7 @@ export const externalLinks: ExternalLinkType[] = [
     url: "https://www.linkedin.com/in/bhavya-dang-27506b223/",
   },
   {
-    url: "https://bhavya-dang.github.io/resume/",
+    url: "http://resume.bhavyadang.in/",
     label: "Resume",
   },
   {

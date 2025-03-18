@@ -40,7 +40,7 @@ const Menu = ({ navLinks }: { navLinks: NavLink[] }) => {
           variant="outline"
           size="icon"
         >
-          <AlignLeft size="20px" />
+          <AlignLeft size="1.5rem" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent

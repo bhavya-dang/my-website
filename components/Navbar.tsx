@@ -62,9 +62,9 @@ export const Navbar = () => {
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
-                <Moon className="w-5 h-5 text-slate-800 dark:text-white hover:animate-wiggle transition ease-linear duration-150" />
+                <Moon className="w-6 h-6 text-slate-800 dark:text-white hover:animate-wiggle transition ease-linear duration-160" />
               ) : (
-                <Sun className="w-5 h-5 text-slate-800 dark:text-white hover:animate-spin-slow transition ease-linear duration-150" />
+                <Sun className="w-6 h-6 text-slate-800 dark:text-white hover:animate-spin-slow transition ease-linear duration-150" />
               )}
             </button>
           </div>
