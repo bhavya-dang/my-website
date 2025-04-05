@@ -7,6 +7,8 @@ export const generateMetadata = (): Metadata => ({
   description: "Explore my projects.",
 });
 
+export const revalidate = 0;
+
 export default async function ProjectsPage() {
   let projects = await fetchProjects();
 

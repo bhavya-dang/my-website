@@ -2,7 +2,6 @@
 "use client";
 
 import { useState, useEffect, TouchEvent } from "react";
-import ImageCarousel from "@/components/Carousel";
 import { Inter } from "next/font/google";
 import {
   Search,
@@ -305,16 +304,18 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <a
-                            href={project.properties["Github URL"].url || ""}
-                            target="_blank"
-                            className="text-slate-800 dark:text-white hover:text-violet-500 py-1 px-2 font-medium"
-                          >
-                            <LucideGithub className="h-4 w-4 md:h-5 md:w-5" />
-                          </a>
-                          {project.properties["Demo URL"].url !== "" && (
+                          {project.properties["Github URL"].url !== null && (
                             <a
-                              href={project.properties["Demo URL"].url || ""}
+                              href={project.properties["Github URL"].url}
+                              target="_blank"
+                              className="text-slate-800 dark:text-white hover:text-violet-500 py-1 px-2 font-medium"
+                            >
+                              <LucideGithub className="h-4 w-4 md:h-5 md:w-5" />
+                            </a>
+                          )}
+                          {project.properties["Demo URL"].url !== null && (
+                            <a
+                              href={project.properties["Demo URL"].url}
                               target="_blank"
                               className="text-slate-800 dark:text-white hover:text-violet-500 py-1 px-2 font-medium"
                             >
