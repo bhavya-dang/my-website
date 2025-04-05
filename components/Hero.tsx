@@ -110,8 +110,7 @@ export const Hero = () => {
             {externalLinks.map((s, i) => (
               <motion.li
                 key={i}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ opacity: 0.8 }}
                 transition={{ duration: 0.2 }}
               >
                 <a
@@ -121,13 +120,13 @@ export const Hero = () => {
                   className="transition-colors duration-300"
                 >
                   {s.label === "Github" ? (
-                    <GitHubLogoIcon className="w-5 h-5 opacity-100 hover:opacity-80 transition ease-linear duration-300" />
+                    <GitHubLogoIcon className="w-5 h-5 transition ease-linear" />
                   ) : s.label === "LinkedIn" ? (
-                    <LinkedInLogoIcon className="w-5 h-5 opacity-100 hover:opacity-80 transition ease-linear duration-300" />
+                    <LinkedInLogoIcon className="w-5 h-5 transition ease-linear" />
                   ) : s.label === "Youtube" ? (
                     <i className="bx bxl-youtube text-2xl"></i>
                   ) : (
-                    <FileUser className="w-5 h-5 opacity-100 hover:opacity-80 transition ease-linear duration-300" />
+                    <FileUser className="w-5 h-5 transition ease-linear" />
                   )}
                 </a>
               </motion.li>
