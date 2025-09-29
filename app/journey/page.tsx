@@ -12,7 +12,7 @@ interface ExperienceProps {
   title: string;
   company: string;
   companyLink?: string;
-  location?: string;
+  duration?: string;
   description: React.ReactNode;
   techStack: string[];
 }
@@ -21,7 +21,7 @@ const ExperienceCard = ({
   title,
   company,
   companyLink,
-  location,
+  duration,
   description,
   techStack,
 }: ExperienceProps) => {
@@ -236,10 +236,27 @@ const ExperienceCard = ({
 
 const experiences = [
   {
+    title: "SVT/PV Software Systems Engineer",
+    company: "Ciena",
+    companyLink: "https://www.ciena.com/",
+    duration: "July 2025 - Present",
+    description:
+      "Developing and maintaining automated tests for Ciena's software products",
+    techStack: [
+      "Postman",
+      "Playwright",
+      "Javascript",
+      "Testrail",
+      "Jira",
+      "Newman",
+      "Teamcity",
+    ],
+  },
+  {
     title: "SDET Intern",
     company: "Ciena",
     companyLink: "https://www.ciena.com/",
-    location: "Jan 2025 - Present",
+    duration: "Jan 2025 - June 2025",
     description:
       "Works as an Automation Engineer to develop and maintain automated tests for Ciena's products.",
     techStack: [
@@ -255,7 +272,7 @@ const experiences = [
     title: "SDE Intern",
     company: "D2I Technology",
     companyLink: "https://d2itechnology.com/",
-    location: "May - July 2024",
+    duration: "May - July 2024",
     description: (
       <>
         Developed{" "}
@@ -270,7 +287,7 @@ const experiences = [
     title: "Active Volunteer",
     company: "ALiAS",
     companyLink: "https://asetalias.in/",
-    location: "2022 - 2024",
+    duration: "2022 - 2024",
     description: (
       <ul className="mb-2 text-neutral-700 dark:text-neutral-300 space-y-2">
         <li>
@@ -291,7 +308,7 @@ const experiences = [
     title: "Participant",
     company: "Supabase Week X Hackathon",
     companyLink: "https://supabase.com/blog/supabase-hackathon-lwx",
-    location: "Dec 2023",
+    duration: "Dec 2023",
     description: (
       <>
         Built <span className="underline italic">BrowserMingle</span>, a Chrome
@@ -303,7 +320,7 @@ const experiences = [
   {
     title: "SDE Intern",
     company: "ByFornoTri Tech",
-    location: "Apr - May 2023",
+    duration: "Apr - May 2023",
     description: (
       <ul className="mb-2 text-neutral-700 dark:text-neutral-300 space-y-2">
         <li>Worked on form recognition system for hospitals in Uganda.</li>
@@ -319,7 +336,7 @@ const experiences = [
     title: "Participant",
     company: "HackTheMountains 2.0 Hackathon",
     companyLink: "https://hackthemountains2.devfolio.co/",
-    location: "September 2022",
+    duration: "September 2022",
     description: (
       <>
         Built{" "}
@@ -349,7 +366,7 @@ export default async function JourneyPage() {
     <div className="px-2 sm:px-4 md:px-6 lg:px-20">
       <Timeline
         data={experiences.map((exp) => ({
-          title: exp.location,
+          title: exp.duration,
           content: <ExperienceCard {...exp} />,
         }))}
       />

@@ -55,7 +55,7 @@ export const Hero = () => {
       >
         <div className="relative">
           <Image
-            src="/me4.jpg"
+            src="/me---.jpeg"
             height={h}
             width={w}
             alt="Hero Image"
@@ -143,7 +143,7 @@ export const Hero = () => {
       >
         <div className="relative">
           <Image
-            src="/me4.jpg"
+            src="/me---.jpeg"
             alt="Hero Image"
             className={`rounded-full p-[1px] dark:shadow-[0_0_5rem_-0.5rem_#fff8] shadow-[0_0_5rem_-0.5rem_#000] hero-join-button-dark-i transition-all duration-500 ${
               isImageLoaded ? "opacity-100" : "opacity-0"

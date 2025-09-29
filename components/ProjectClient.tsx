@@ -152,7 +152,8 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
             </div>
             <p className="text-base md:text-lg text-slate-700 dark:text-slate-300 mt-2 md:mt-4 max-w-lg">
               I like to build things. Always up for learning something new.
-              Currently learning{" "}
+              Currently tinkering with self-hosting.
+              {/* Currently learning{" "}
               <a
                 className="hover:underline"
                 href="https://www.rust-lang.org/https://www.rust-lang.org/"
@@ -167,7 +168,7 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
               <a className="hover:underline" href="https://redis.io/">
                 Redis
               </a>
-              .
+              . */}
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full mt-4">
               <div className="relative flex-1 flex flex-col sm:flex-row justify-between w-full gap-4">

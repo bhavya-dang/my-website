@@ -4,6 +4,15 @@ import { useScroll, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 
+import { Inter } from "next/font/google";
+
+import localFont from "next/font/local";
+
+export const satoshi = localFont({
+  src: "../../app/fonts/Satoshi-Regular.otf",
+  weight: "400",
+});
+
 export function BackToTop() {
   const { scrollY } = useScroll();
   const [isVisible, setIsVisible] = useState(false);
@@ -28,7 +37,7 @@ export function BackToTop() {
       whileTap={{ scale: 0.95 }}
     >
       <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
-      <span className="hidden sm:inline font-satoshi font-semibold">
+      <span className={`hidden sm:inline ${satoshi.className} font-semibold`}>
         Back to Top
       </span>
     </motion.button>
