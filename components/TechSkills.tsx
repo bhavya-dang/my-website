@@ -24,6 +24,7 @@ import {
   SiVuedotjs,
   SiDaisyui,
   SiRedis,
+  SiAppwrite,
 } from "react-icons/si";
 import { BiData } from "react-icons/bi";
 import { DiNodejs } from "react-icons/di";
@@ -69,17 +70,17 @@ const skills: Skill[] = [
     category: "languages",
     description: "Data processing and automation",
   },
-  {
-    name: "Rust",
-    icon: SiRust,
-    level: 1,
-    category: "languages",
-    description: "Systems programming and performance",
-  },
+  // {
+  //   name: "Rust",
+  //   icon: SiRust,
+  //   level: 1,
+  //   category: "languages",
+  //   description: "Systems programming and performance",
+  // },
   {
     name: "Go",
     icon: SiGo,
-    level: 2,
+    level: 1,
     category: "languages",
     description: "Concurrent programming and microservices",
   },
@@ -93,16 +94,23 @@ const skills: Skill[] = [
     description: "Component-based UI development",
   },
   {
+    name: "React Native",
+    icon: SiReact,
+    level: 2,
+    category: "frontend",
+    description: "Component-based UI development",
+  },
+  {
     name: "Next.js",
     icon: SiNextdotjs,
-    level: 4,
+    level: 3,
     category: "frontend",
     description: "Full-stack React framework",
   },
   {
     name: "Vue.js",
     icon: SiVuedotjs,
-    level: 3,
+    level: 2,
     category: "frontend",
     description: "Progressive JavaScript framework",
   },
@@ -132,14 +140,21 @@ const skills: Skill[] = [
   {
     name: "Firebase",
     icon: SiFirebase,
-    level: 3,
+    level: 2,
+    category: "backend",
+    description: "Backend-as-a-Service platform",
+  },
+  {
+    name: "Appwrite",
+    icon: SiAppwrite,
+    level: 2,
     category: "backend",
     description: "Backend-as-a-Service platform",
   },
   {
     name: "Prisma",
     icon: SiPrisma,
-    level: 3,
+    level: 1,
     category: "backend",
     description: "Modern database ORM",
   },
@@ -176,7 +191,7 @@ const skills: Skill[] = [
   {
     name: "Pinecone",
     icon: BiData,
-    level: 2,
+    level: 1,
     category: "database",
     description: "Vector database for AI",
   },
@@ -192,14 +207,14 @@ const skills: Skill[] = [
   {
     name: "Git",
     icon: SiGit,
-    level: 5,
+    level: 3,
     category: "devops",
     description: "Version control system",
   },
   {
     name: "Linux",
     icon: SiLinux,
-    level: 4,
+    level: 3,
     category: "devops",
     description: "Operating system and shell",
   },
@@ -267,7 +282,7 @@ export default function TechSkills() {
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               selectedCategory === "all"
                 ? "bg-black text-white dark:bg-white dark:text-black"
-                : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                : "bg-gray-100 text-gray-700 dark:bg-zinc-900 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
             }`}
           >
             All
@@ -279,7 +294,7 @@ export default function TechSkills() {
               className={`px-4 py-2 rounded-full text-sm font-medium capitalize transition-colors ${
                 selectedCategory === category
                   ? "bg-black text-white dark:bg-white dark:text-black"
-                  : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                  : "bg-gray-100 text-gray-700 dark:bg-zinc-900 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
               }`}
             >
               {category}

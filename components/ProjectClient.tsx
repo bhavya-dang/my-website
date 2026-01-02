@@ -152,7 +152,7 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
             </div>
             <p className="text-base md:text-lg text-slate-700 dark:text-slate-300 mt-2 md:mt-4 max-w-lg">
               I like to build things. Always up for learning something new.
-              Currently tinkering with self-hosting.
+              Currently tinkering with Golang and React Native.
               {/* Currently learning{" "}
               <a
                 className="hover:underline"
@@ -260,7 +260,8 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
                       </div>
 
                       <div className="mt-auto pt-4 flex flex-wrap justify-between items-center gap-y-3">
-                        <div className="flex flex-wrap gap-2 items-center">
+                        {/* TAGS */}
+                        {/* <div className="flex flex-wrap gap-2 items-center">
                           {getVisibleTags(
                             project.properties.Tags.multi_select
                           ).map((tag: any, index: number) => (
@@ -302,7 +303,7 @@ export default function ProjectClient({ projects }: { projects: any[] }) {
                                 </TooltipContent>
                               </Tooltip>
                             )}
-                        </div>
+                        </div> */}
 
                         <div className="flex items-center gap-2">
                           {project.properties["Github URL"].url !== null && (

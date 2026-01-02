@@ -18,11 +18,51 @@ export function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+
+    // Track scroll position to show/hide based on position
     const unsubscribe = scrollY.on("change", (latest) => {
-      setIsVisible(latest > 100); // Show button if scrolled more than 100px
+      const shouldShow = latest > 100;
+
+      if (!shouldShow) {
+        // Hide immediately if scrolled back to top
+        setIsVisible(false);
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+      }
     });
 
-    return () => unsubscribe();
+    // Track scroll events to detect when scrolling stops
+    const handleScroll = () => {
+      const currentScrollY =
+        window.scrollY || document.documentElement.scrollTop;
+
+      if (currentScrollY > 100) {
+        // Show button when scrolling
+        setIsVisible(true);
+
+        // Clear any existing timeout
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+
+        // Set timeout to hide after 1 second of no scrolling
+        scrollTimeout = setTimeout(() => {
+          setIsVisible(false);
+        }, 1000);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      unsubscribe();
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    };
   }, [scrollY]);
 
   return (

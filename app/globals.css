@@ -12,11 +12,11 @@
 
 @layer base {
   .notion-content .notion-code {
-    @apply mt-10 mb-10  bg-zinc-800 p-4 w-full text-red font-mono text-base;
+    @apply mt-10 mb-10  bg-zinc-800 p-4 w-full text-red-500 font-mono text-base;
   }
 
   .dark .notion-content .notion-code {
-    @apply mt-10 mb-10  bg-zinc-900 p-4 w-full text-red font-mono text-base;
+    @apply mt-10 mb-10  bg-zinc-900 p-4 w-full text-red-500 font-mono text-base;
   }
 
   .notion-content .notion-text-code {
