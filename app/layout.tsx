@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -59,11 +60,16 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.className} m-auto bg-white dark:bg-black selection:bg-white selection:text-violet-900 px-4 sm:px-8 md:px-16 lg:px-36`}
+        className={`${inter.className} m-auto bg-white dark:bg-black selection:bg-white selection:text-violet-900 px-4 sm:px-8 md:px-16 lg:px-36 flex flex-col min-h-screen`}
       >
         <ThemeProvider>
-          <Navbar />
-          {children}
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </div>
         </ThemeProvider>
         <Analytics />
       </body>

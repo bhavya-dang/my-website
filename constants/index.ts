@@ -24,10 +24,10 @@ export const externalLinks: ExternalLinkType[] = [
     label: "LinkedIn",
     url: "https://www.linkedin.com/in/bhavya-dang-27506b223/",
   },
-  {
-    url: "http://resume.bhavyadang.in/",
-    label: "Resume",
-  },
+  // {
+  //   url: "http://resume.bhavyadang.in/",
+  //   label: "Resume",
+  // },
   {
     url: "https://youtube.com/@bhavyadangdev",
     label: "Youtube",

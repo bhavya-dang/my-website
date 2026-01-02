@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import RoleScramble from "../app/roles";
 import { externalLinks } from "@/constants/index";
@@ -18,19 +18,19 @@ const inter = Inter({ subsets: ["latin"] });
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, ease: "easeOut" },
+  transition: { duration: 0.8 },
 };
 
 const fadeIn = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
-  transition: { duration: 0.8, ease: "easeOut" },
+  transition: { duration: 0.8 },
 };
 
 const scaleIn = {
   initial: { scale: 0.8, opacity: 0 },
   animate: { scale: 1, opacity: 1 },
-  transition: { duration: 0.8, ease: "easeOut" },
+  transition: { duration: 0.8 },
 };
 
 export const Hero = () => {
@@ -51,7 +51,9 @@ export const Hero = () => {
       {/* Small Hero for Mobile */}
       <motion.div
         className="small-hero w-full md:hidden flex justify-center mb-4"
-        {...fadeInUp}
+        initial={fadeInUp.initial}
+        animate={fadeInUp.animate}
+        transition={{ duration: 0.8 }}
       >
         <div className="relative">
           <Image
@@ -78,17 +80,27 @@ export const Hero = () => {
             className={`text-2xl lg:text-4xl font-extrabold ${inter.className}`}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
-            Hi 👋, I&apos;m&nbsp;
+            hi,&nbsp;
+          </motion.h1>
+          <motion.h1
+            className={`text-2xl lg:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:text-violet-500 bg-opacity-50 ${inter.className}`}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          >
+            {" "}
+            bhavya&nbsp;
           </motion.h1>
           <motion.h1
             className={`text-2xl lg:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:text-white bg-opacity-50 ${inter.className}`}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
           >
-            Bhavya.
+            {" "}
+            here.&nbsp;
           </motion.h1>
         </div>
 
@@ -105,7 +117,7 @@ export const Hero = () => {
             className="external-links flex items-start gap-x-4 mt-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
           >
             {externalLinks.map((s, i) => (
               <motion.li
