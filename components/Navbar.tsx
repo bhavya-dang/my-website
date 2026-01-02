@@ -25,15 +25,15 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`flex items-center justify-between py-4 mt-6 ${inter.className} text-slate-800 dark:text-gray-300 w-full text-xs md:text-base`}
+      className={`flex items-center justify-between py-4 mt-6 ${inter.className} text-slate-800 dark:text-gray-300 w-full text-xs md:text-base relative z-50 bg-white dark:bg-black`}
     >
       <h1 className="flex font-semibold">
         <a href="/">Bhavya Dang</a>
       </h1>
 
-      <div className="flex items-center">
+      <div className="flex items-center relative z-50">
         {/* Desktop Navigation */}
-        <ul className="flex">
+        <ul className="flex relative z-50">
           {navLinks.map(
             (link, index) =>
               link.label !== "Home" && (
