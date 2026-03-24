@@ -9,6 +9,7 @@ import { useTheme } from "@/context/ThemeContext";
 import { Moon, Sun } from "lucide-react";
 
 import { Inter } from "next/font/google";
+import CommandPalette from "./CommandPalette";
 const inter = Inter({ subsets: ["latin"] });
 
 export const Navbar = () => {
@@ -31,7 +32,7 @@ export const Navbar = () => {
         <a href="/">Bhavya Dang</a>
       </h1>
 
-      <div className="flex items-center relative z-50">
+      <div className="flex items-center justify-between relative z-50">
         {/* Desktop Navigation */}
         <ul className="flex relative z-50">
           {navLinks.map(
@@ -45,8 +46,9 @@ export const Navbar = () => {
                     {link.label}
                   </a>
                 </li>
-              )
+              ),
           )}
+          <CommandPalette />
         </ul>
 
         {/* Mobile Menu */}
