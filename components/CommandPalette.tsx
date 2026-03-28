@@ -318,7 +318,7 @@ export default function CommandPalette() {
     <>
       <button
         type="button"
-        className="hidden px-4 py-1 rounded-full border border-neutral-200 bg-white text-neutral-600 shadow-lg hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 text-xs md:text-base md:flex"
+        className="hidden px-4 py-1 rounded-full border border-neutral-200 bg-white text-neutral-600 shadow-sm hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 text-xs md:text-base md:flex"
         onClick={() => setOpen(true)}
       >
         ⌘&nbsp;·&nbsp;K
