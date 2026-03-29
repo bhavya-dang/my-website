@@ -66,3 +66,17 @@ export const notionColors: {
   pink: "#AD1A72",
   red: "#E03E3E",
 };
+
+export const changelog = [
+  {
+    date: "29/03/26",
+    items: [
+      "added a command palette to easily perform operations and navigate within the site",
+      "added this changelog banner!",
+    ],
+  },
+  {
+    date: "28/03/25",
+    items: ["created a TUI version of this website; will be published soon"],
+  },
+];

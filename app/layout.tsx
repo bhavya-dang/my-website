@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import CommandPalette from "@/components/CommandPalette";
+import { changelog } from "@/constants";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,6 +32,12 @@ export const metadata: Metadata = {
     locale: "en_IN",
     type: "website",
   },
+};
+
+const changelogData = {
+  entries: changelog.flatMap((section) => section.items),
+  dateSections: changelog,
+  showBanner: true,
 };
 
 export default function RootLayout({
@@ -69,6 +76,7 @@ export default function RootLayout({
             <main className="flex-grow">{children}</main>
             <Footer />
           </div>
+          <CommandPalette changelog={changelogData} />
         </ThemeProvider>
         <Analytics />
       </body>

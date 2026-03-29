@@ -1,6 +1,6 @@
 "use client";
 
-import { navLinks } from "@/constants";
+import { navLinks, changelog as changelogData } from "@/constants";
 import { useTheme } from "@/context/ThemeContext";
 import {
   BookOpen,
@@ -13,6 +13,7 @@ import {
   Moon,
   Sparkles,
   Sun,
+  X,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
@@ -31,7 +32,7 @@ type Action = {
   description?: string;
   icon: ReactNode;
   shortcut?: string;
-  group: "General" | "Go to";
+  group: string;
   keywords: string[];
   run: () => any | Promise<any>;
   closeOnRun?: boolean;
@@ -56,18 +57,29 @@ const navIcon = (label: string) => {
   }
 };
 
-const GROUP_PRIORITY: Record<Action["group"], number> = {
+const GROUP_PRIORITY: Record<string, number> = {
   General: 0,
   "Go to": 1,
 };
 
-export default function CommandPalette() {
+export type CommandPaletteProps = {
+  changelog?: {
+    entries: string[];
+    dateSections?: { date: string; items: string[] }[];
+    showBanner?: boolean;
+  };
+};
+
+export default function CommandPalette({
+  changelog,
+}: CommandPaletteProps = {}) {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const [status, setStatus] = useState<string | null>(null);
+  const [changelogOpen, setChangelogOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const { theme, toggleTheme } = useTheme();
 
@@ -82,6 +94,20 @@ export default function CommandPalette() {
     const timer = setTimeout(() => setStatus(null), 2000);
     return () => clearTimeout(timer);
   }, [status]);
+
+  const resolvedChangelog =
+    changelog ??
+    (Array.isArray(changelogData)
+      ? {
+          entries: changelogData.flatMap((section) => section.items),
+          dateSections: changelogData,
+        }
+      : { entries: [], dateSections: [] });
+  const changelogEntries = resolvedChangelog.entries ?? [];
+  const changelogSections = (resolvedChangelog.dateSections ?? []).filter(
+    (section) => Array.isArray(section.items) && section.items.length > 0,
+  );
+  const hasChangelog = true;
 
   const actions = useMemo<Action[]>(() => {
     const general: Action[] = [
@@ -136,6 +162,21 @@ export default function CommandPalette() {
           announce(`Switched to ${theme === "light" ? "dark" : "light"} mode`);
         },
       },
+      ...(hasChangelog
+        ? [
+            {
+              id: "see-changelog",
+              label: "See recent changelog",
+              description: "View the latest updates",
+              icon: <BookOpen className={ICON_CLASS} />,
+              shortcut: "C",
+              group: "General",
+              keywords: ["changelog", "updates", "recent", "changes"],
+              closeOnRun: false,
+              run: () => setChangelogOpen(true),
+            },
+          ]
+        : []),
       {
         id: "view-source",
         label: "View source",
@@ -175,7 +216,7 @@ export default function CommandPalette() {
     }));
 
     return [...general, ...goTo];
-  }, [announce, router, theme, toggleTheme]);
+  }, [announce, router, theme, toggleTheme, hasChangelog]);
 
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase();
@@ -244,15 +285,37 @@ export default function CommandPalette() {
         if (target) runAction(target);
       } else if (event.key === "Escape") {
         event.preventDefault();
-        setOpen(false);
+        if (changelogOpen) {
+          setChangelogOpen(false);
+        } else {
+          setOpen(false);
+        }
       }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [open, filtered, activeIndex, runAction]);
+  }, [open, filtered, activeIndex, runAction, changelogOpen]);
+
+  useEffect(() => {
+    if (!open && changelogOpen) {
+      setChangelogOpen(false);
+    }
+  }, [open, changelogOpen]);
+
+  useEffect(() => {
+    if (!changelogOpen) return;
+    const handler = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setChangelogOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [changelogOpen]);
 
   const grouped = useMemo(() => {
-    const map = new Map<Action["group"], Action[]>();
+    const map = new Map<string, Action[]>();
     filtered.forEach((action) => {
       const list = map.get(action.group) ?? [];
       list.push(action);
@@ -375,6 +438,63 @@ export default function CommandPalette() {
                   >
                     {status ?? "\u00A0"}
                   </div>
+                </div>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
+
+      {mounted && changelogOpen && hasChangelog
+        ? createPortal(
+            <div className="fixed inset-0 z-[1100] flex items-center justify-center px-4">
+              <div
+                className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                aria-hidden="true"
+                onClick={() => setChangelogOpen(false)}
+              />
+              <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-neutral-200 bg-white/90 p-6 shadow-2xl backdrop-blur-md dark:border-neutral-800 dark:bg-neutral-950/90">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
+                      Changelog
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setChangelogOpen(false)}
+                    aria-label="Close changelog"
+                    className="rounded-full border border-neutral-200 bg-white p-2 text-neutral-600 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+
+                <div className="mt-4 max-h-[60vh] space-y-4 overflow-y-auto pr-1">
+                  {(changelogSections.length > 0
+                    ? changelogSections
+                    : [{ date: "", items: changelogEntries }]
+                  ).map((section, sectionIdx) => (
+                    <div
+                      key={`section-${section.date || sectionIdx}`}
+                      className="space-y-2"
+                    >
+                      {section.date ? (
+                        <p className="text-sm font-mono font-semibold text-neutral-700 dark:text-neutral-200">
+                          {section.date}
+                        </p>
+                      ) : null}
+                      <div className="space-y-2 border-l border-neutral-200 pl-3 dark:border-neutral-800">
+                        {section.items.map((entry, idx) => (
+                          <div
+                            key={`${entry}-${idx}`}
+                            className="rounded-lg border border-neutral-100 bg-neutral-50 px-3 py-2 text-sm text-neutral-800 shadow-sm dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200"
+                          >
+                            {entry}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>,
