@@ -76,7 +76,7 @@ export default function RootLayout({
             <main className="flex-grow">{children}</main>
             <Footer />
           </div>
-          <CommandPalette changelog={changelogData} />
+          {/* <CommandPalette changelog={changelogData} /> */}
         </ThemeProvider>
         <Analytics />
       </body>
