@@ -4,7 +4,7 @@
 import { HomeIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import Menu from "./Menu";
-import { navLinks } from "@/constants";
+import { changelog, navLinks } from "@/constants";
 import { useTheme } from "@/context/ThemeContext";
 import { Moon, Sun } from "lucide-react";
 

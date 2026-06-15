@@ -69,6 +69,13 @@ export const notionColors: {
 
 export const changelog = [
   {
+    date: "16/06/26",
+    items: [
+      "fixed resume site's DNS issue",
+      "added resume link to the command palette!",
+    ],
+  },
+  {
     date: "29/03/26",
     items: [
       "added a command palette to easily perform operations and navigate within the site",

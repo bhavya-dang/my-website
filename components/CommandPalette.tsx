@@ -14,6 +14,7 @@ import {
   Sparkles,
   Sun,
   X,
+  File,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
@@ -25,6 +26,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { FILE } from "dns";
 
 type Action = {
   id: string;
@@ -52,6 +54,8 @@ const navIcon = (label: string) => {
       return <BookOpen className={ICON_CLASS} />;
     case "art":
       return <Brush className={ICON_CLASS} />;
+    case "resume":
+      return <File className={ICON_CLASS} />;
     default:
       return <Compass className={ICON_CLASS} />;
   }
@@ -128,6 +132,22 @@ export default function CommandPalette({
             announce("Clipboard unavailable");
           }
         },
+      },
+      {
+        id: "visit-resume",
+        label: "My Resume",
+        description: "Check out my resume",
+        icon: <Link2 className={ICON_CLASS} />,
+        shortcut: "R",
+        group: "General",
+        keywords: ["resume", "portfolio"],
+        closeOnRun: false,
+        run: () =>
+          window.open(
+            "https://resume.bhavyadang.in/",
+            "_blank",
+            "noopener,noreferrer",
+          ),
       },
       {
         id: "send-email",
