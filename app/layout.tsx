@@ -7,6 +7,7 @@ import { Footer } from "../components/Footer";
 import CommandPalette from "@/components/CommandPalette";
 import { changelog } from "@/constants";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -79,6 +80,7 @@ export default function RootLayout({
           {/* <CommandPalette changelog={changelogData} /> */}
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
