@@ -26,7 +26,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { FILE } from "dns";
+
 
 type Action = {
   id: string;
@@ -159,29 +159,29 @@ export default function CommandPalette({
         keywords: ["email", "contact", "hello", "message"],
         run: () => window.open("mailto:bhavya.dang1207@gmail.com", "_self"),
       },
-      {
-        id: "toggle-theme",
-        label:
-          theme === "light" ? "Switch to dark mode" : "Switch to light mode",
-        description:
-          theme === "light"
-            ? "I know your eyes are hurting already."
-            : "Why though?",
-        icon:
-          theme === "light" ? (
-            <Moon className={ICON_CLASS} />
-          ) : (
-            <Sun className={ICON_CLASS} />
-          ),
-        shortcut: "T",
-        group: "General",
-        keywords: ["theme", "dark", "light", "toggle", "mode"],
-        closeOnRun: false,
-        run: () => {
-          toggleTheme();
-          announce(`Switched to ${theme === "light" ? "dark" : "light"} mode`);
-        },
-      },
+      // {
+      //   id: "toggle-theme",
+      //   label:
+      //     theme === "light" ? "Switch to dark mode" : "Switch to light mode",
+      //   description:
+      //     theme === "light"
+      //       ? "I know your eyes are hurting already."
+      //       : "Why though?",
+      //   icon:
+      //     theme === "light" ? (
+      //       <Moon className={ICON_CLASS} />
+      //     ) : (
+      //       <Sun className={ICON_CLASS} />
+      //     ),
+      //   shortcut: "T",
+      //   group: "General",
+      //   keywords: ["theme", "dark", "light", "toggle", "mode"],
+      //   closeOnRun: false,
+      //   run: () => {
+      //     toggleTheme();
+      //     announce(`Switched to ${theme === "light" ? "dark" : "light"} mode`);
+      //   },
+      // },
       ...(hasChangelog
         ? [
             {
@@ -401,7 +401,7 @@ export default function CommandPalette({
     <>
       <button
         type="button"
-        className="hidden px-4 py-1 rounded-full border border-neutral-200 bg-white text-neutral-600 shadow-sm hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 text-xs md:text-base md:flex"
+          className="px-4 py-1 rounded-full border border-neutral-200 bg-white text-neutral-600 shadow-sm hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 text-xs md:text-base flex"
         onClick={() => setOpen(true)}
       >
         ⌘&nbsp;·&nbsp;K

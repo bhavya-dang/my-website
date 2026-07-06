@@ -1,43 +1,57 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
-import CommandPalette from "@/components/CommandPalette";
-import { changelog } from "@/constants";
+import { Navbar } from "@/components/Navbar";
+import { AudioProvider } from "@/context/AudioContext";
 import { Analytics } from "@vercel/analytics/react";
 
-const inter = Inter({ subsets: ["latin"] });
+const baseUrl = "https://bhavyadang.in";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
   title: {
     template: "%s | Bhavya Dang",
     default: "Bhavya Dang",
   },
-  description: "Bhavya Dang | Full Stack Developer",
+  description: "Bhavya Dang — Developer, Designer, Creator",
+  keywords: [
+    "Bhavya Dang",
+    "developer",
+    "designer",
+    "portfolio",
+    "full stack",
+    "next.js",
+    "react",
+  ],
   openGraph: {
     title: "Bhavya Dang",
-    description: "Bhavya Dang | Full Stack Developer",
-    url: "https://bhavyadang.in",
+    description: "Bhavya Dang — Developer, Designer, Creator",
+    url: baseUrl,
     siteName: "Bhavya Dang",
-    images: [
-      {
-        url: "https://github.com/bhavya-dang/my-website/blob/master/public/bhavyadang.jpeg?raw=true",
-        width: 800,
-        height: 600,
-        alt: "Bhavya Dang profile image",
-      },
-    ],
     locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: "/meV.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Bhavya Dang",
+      },
+    ],
   },
-};
-
-const changelogData = {
-  entries: changelog.flatMap((section) => section.items),
-  dateSections: changelog,
-  showBanner: true,
+  twitter: {
+    card: "summary_large_image",
+    title: "Bhavya Dang",
+    description: "Bhavya Dang — Developer, Designer, Creator",
+    images: ["/meV.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: baseUrl,
+  },
 };
 
 export default function RootLayout({
@@ -46,13 +60,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
         <link rel="icon" href="/terminal.svg" sizes="any" />
-        <link
-          href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-          rel="stylesheet"
-        />
+        <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0e0e12" media="(prefers-color-scheme: dark)" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -67,16 +79,18 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`${inter.className} m-auto bg-white dark:bg-black selection:bg-white selection:text-violet-900 px-4 sm:px-8 md:px-16 lg:px-36 flex flex-col min-h-screen`}
-      >
+      <body className="bg-background text-foreground">
         <ThemeProvider>
-          <div className="flex flex-col min-h-screen">
+          <AudioProvider>
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-lg focus:outline-none"
+            >
+              Skip to content
+            </a>
             <Navbar />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
-          {/* <CommandPalette changelog={changelogData} /> */}
+            <main id="main-content">{children}</main>
+          </AudioProvider>
         </ThemeProvider>
         <Analytics />
       </body>

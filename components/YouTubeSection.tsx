@@ -1,10 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Inter } from "next/font/google";
 import Image from "next/image";
-import { FaYoutube, FaPlay } from "react-icons/fa";
-
-const inter = Inter({ subsets: ["latin"] });
+import { FaPlay } from "react-icons/fa";
 
 interface YouTubeVideo {
   id: string;
@@ -45,121 +42,85 @@ export default function YouTubeSection() {
 
   const formatViewCount = (count: string) => {
     const num = parseInt(count);
-    if (num >= 1000000) {
-      return (num / 1000000).toFixed(1) + "M";
-    }
-    if (num >= 1000) {
-      return (num / 1000).toFixed(1) + "K";
-    }
+    if (num >= 1000000) return (num / 1000000).toFixed(1) + "M";
+    if (num >= 1000) return (num / 1000).toFixed(1) + "K";
     return num.toString();
   };
 
-  if (loading) {
-    return (
-      <section
-        className={`m-auto mt-12 p-4 md:px-8 lg:px-16 xl:px-36 ${inter.className}`}
-      >
-        <div className="mb-8">
-          <h1 className="font-extrabold text-4xl md:text-5xl lg:text-6xl text-slate-950 dark:text-white leading-tight">
-            Videos.
-          </h1>
-          <p className="text-base md:text-lg text-slate-700 dark:text-slate-300 mt-2 md:mt-4">
-            Latest content from my{" "}
-            <a
-              href="https://youtube.com/@bhavyadangdev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-violet-500 hover:text-violet-600 transition-colors"
-            >
-              YouTube channel
-            </a>
-            .
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="rounded-xl overflow-hidden bg-white/5 animate-pulse"
-            >
-              <div className="aspect-video bg-gray-200 dark:bg-gray-700" />
-              <div className="p-4 space-y-3">
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
-                <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2" />
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section
-      className={`m-auto mt-40 p-4 md:px-8 lg:px-16 xl:px-36 ${inter.className}`}
-    >
-      <div className="mb-8">
-        <h1 className="font-extrabold text-4xl md:text-5xl lg:text-6xl text-slate-950 dark:text-white leading-tight">
-          Videos.
-        </h1>
-        <p className="text-base md:text-lg text-slate-700 dark:text-slate-300 mt-2 md:mt-4">
-          Latest content from my{" "}
-          <a
-            href="https://youtube.com/@bhavyadangdev"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-violet-500 hover:text-violet-600 transition-colors"
-          >
-            YouTube channel
-          </a>
-          .
-        </p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {videos.map((video) => (
-          <a
-            key={video.id}
-            href={`https://youtube.com/watch?v=${video.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-xl overflow-hidden bg-white/5 hover:bg-white/10 transition-colors group"
-          >
-            <div className="relative aspect-video">
-              <Image
-                src={video.thumbnail}
-                alt={video.title}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/40 transition-colors">
-                <FaPlay className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-            </div>
-            <div className="p-4">
-              <h3 className="font-medium text-lg line-clamp-2 mb-2">
-                {video.title}
-              </h3>
-              <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                <span>{formatViewCount(video.viewCount)} views</span>
-                <span>•</span>
-                <span>{formatDate(video.publishedAt)}</span>
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
-      {/* <div className="mt-8 text-center">
+    <div className="max-w-5xl mx-auto px-4 sm:px-8">
+      <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-2 text-balance">
+        Videos
+      </h2>
+      <p className="text-muted-foreground text-base sm:text-lg mb-8">
+        Latest content from my{" "}
         <a
           href="https://youtube.com/@bhavyadangdev"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-violet-500 hover:text-violet-600 transition-colors"
+          className="text-accent hover:underline"
         >
-          <FaYoutube className="w-6 h-6" />
-          <span className="text-lg font-medium">Visit my channel</span>
+          YouTube channel
         </a>
-      </div> */}
-    </section>
+        .
+      </p>
+
+      <div className="font-mono text-xs sm:text-sm text-muted-foreground mb-6">
+        <span className="text-accent">$</span>
+        <span className="ml-1.5">ls -la youtube/</span>
+      </div>
+
+      {loading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[1, 2, 3].map((i) => (
+            <div
+              key={i}
+              className="rounded-xl overflow-hidden bg-card border border-border/50 animate-pulse"
+            >
+              <div className="aspect-video bg-secondary" />
+              <div className="p-4 space-y-2">
+                <div className="h-4 bg-secondary rounded w-3/4" />
+                <div className="h-3 bg-secondary rounded w-1/2" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {videos.map((video) => (
+            <a
+              key={video.id}
+              href={`https://youtube.com/watch?v=${video.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl overflow-hidden bg-card border border-border/50 hover:shadow-md transition-all duration-200 group"
+            >
+              <div className="relative aspect-video">
+                <Image
+                  src={video.thumbnail}
+                  alt={video.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/40 transition-colors">
+                  <FaPlay className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+              <div className="p-4">
+                <h3 className="font-medium text-sm line-clamp-2 mb-1">
+                  {video.title}
+                </h3>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <span>{formatViewCount(video.viewCount)} views</span>
+                  <span>&middot;</span>
+                  <span>{formatDate(video.publishedAt)}</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
