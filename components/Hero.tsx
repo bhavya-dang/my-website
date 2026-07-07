@@ -39,7 +39,6 @@ export const Hero = () => {
 
           <p className="font-mono text-sm text-muted-foreground">
             Developer &amp; Designer{" "}
-            <span className="text-muted-foreground/30">·</span> Gurugram, India
           </p>
 
           <WorkStatus className="mt-3 justify-center sm:justify-start" />
@@ -77,8 +76,9 @@ export const Hero = () => {
           <div className="relative">
             <div className="relative w-48 h-48 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full overflow-hidden shadow-xl ring-1 ring-black/10 dark:ring-white/10">
               <Image
-                src="/meV.jpg"
+                src="/meV-1.webp"
                 fill
+                sizes="(max-width: 640px) 192px, (max-width: 768px) 288px, 320px"
                 alt="Bhavya Dang"
                 className={`object-cover transition-all duration-500 ${
                   isImageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"

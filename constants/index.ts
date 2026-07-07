@@ -59,6 +59,10 @@ export const notionColors: {
 
 export const changelog = [
   {
+    date: "07/07/26",
+    items: ["major site overhaul", "switched to a single page layout"],
+  },
+  {
     date: "16/06/26",
     items: [
       "fixed resume site's DNS issue",
