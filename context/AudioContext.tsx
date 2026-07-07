@@ -15,7 +15,6 @@ const AUDIO_SRC = "/audio/solace-by-txmy.mp3";
 export function AudioProvider({ children }: { children: ReactNode }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const started = useRef(false);
 
   const currentSong = {
     title: "Solace",
@@ -34,22 +33,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
     audioRef.current = audio;
 
-    const start = () => {
-      if (started.current) return;
-      started.current = true;
-      audio.play().then(() => setIsPlaying(true)).catch(() => {});
-    };
-
-    document.addEventListener("click", start, { once: true });
-    document.addEventListener("keydown", start, { once: true });
-    document.addEventListener("touchstart", start, { once: true });
-
     return () => {
       audio.pause();
       audio.src = "";
-      document.removeEventListener("click", start);
-      document.removeEventListener("keydown", start);
-      document.removeEventListener("touchstart", start);
     };
   }, []);
 
