@@ -76,6 +76,15 @@ export default async function JourneyPage() {
         company={exp.company}
         companyLink={exp.companyLink}
         duration={exp.duration}
+        description={
+          exp.highlights && exp.highlights.length > 0 ? (
+            <ul className="space-y-2 list-disc pl-4">
+              {exp.highlights.map((h, i) => (
+                <li key={i}>{h}</li>
+              ))}
+            </ul>
+          ) : undefined
+        }
         techStack={exp.techStack}
       />
     ),

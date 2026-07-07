@@ -42,6 +42,13 @@ export default async function Home() {
             <span className="text-muted-foreground/30">·</span>
             <span>{exp.location}</span>
           </div>
+          {exp.highlights && exp.highlights.length > 0 && (
+            <ul className="text-sm text-muted-foreground space-y-1 mb-3 list-disc pl-4">
+              {exp.highlights.map((h, i) => (
+                <li key={i}>{h}</li>
+              ))}
+            </ul>
+          )}
           {exp.techStack.length > 0 && (
             <div className="flex flex-wrap gap-1.5">
               {exp.techStack.map((t) => (

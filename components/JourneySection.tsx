@@ -36,7 +36,7 @@ export default function JourneySection({ data }: { data: JourneyItem[] }) {
         <p className="mt-6 text-sm text-muted-foreground">
           Check out my{" "}
           <a
-            href="https://www.deviantart.com/syncox"
+            href="https://resume.bhavyadang.in"
             className="text-accent hover:underline"
             target="_blank"
             rel="noopener noreferrer"
