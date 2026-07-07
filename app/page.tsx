@@ -2,6 +2,7 @@ import { Hero } from "@/components/Hero";
 import NowSection from "@/components/NowSection";
 import TechSkills from "@/components/TechSkills";
 import ProjectClient from "@/components/ProjectClient";
+import OpenSourceSection from "@/components/OpenSourceSection";
 import YouTubeSection from "@/components/YouTubeSection";
 import ArtClient from "@/components/ArtClient";
 import JourneySection from "@/components/JourneySection";
@@ -66,6 +67,17 @@ export default async function Home() {
     ),
   }));
 
+  const repos = [
+    {
+      name: "pyfenn/fenn",
+      githubUrl: "https://github.com/pyfenn/fenn",
+      highlight:
+        "Added a pre-commit hook to validate commit message format follow conventional commits format",
+      prUrl: "https://github.com/pyfenn/fenn/pull/232",
+      liveUrl: "https://pyfenn.com/",
+    },
+  ];
+
   return (
     <>
       <Hero />
@@ -82,15 +94,19 @@ export default async function Home() {
         <ProjectClient projects={projects} />
       </Section>
 
-      <Section id="experience">
+      <Section id="open-source">
+        <OpenSourceSection repos={repos} />
+      </Section>
+
+      <Section id="experience" className="bg-secondary/50">
         <JourneySection data={timelineData} />
       </Section>
 
-      <Section id="videos" className="bg-secondary/50">
+      <Section id="videos">
         <YouTubeSection />
       </Section>
 
-      <Section id="art">
+      <Section id="art" className="bg-secondary/50">
         <ArtClient />
       </Section>
 

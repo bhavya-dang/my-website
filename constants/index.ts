@@ -25,6 +25,7 @@ export const navLinks: NavLink[] = [
   { href: "/#now", label: "Now" },
   { href: "/#stack", label: "Stack" },
   { href: "/#projects", label: "Projects" },
+  { href: "/#open-source", label: "Open Source" },
   { href: "/#experience", label: "Experience" },
   { href: "/#videos", label: "Videos" },
   { href: "/#art", label: "Art" },
