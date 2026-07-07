@@ -95,7 +95,7 @@ export default function NowSection() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-8">
       <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-2 text-balance">
-        Currently
+        Now
       </h2>
       <p className="text-muted-foreground text-base sm:text-lg mb-8">
         What I&apos;m up to these days.

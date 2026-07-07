@@ -27,10 +27,14 @@ export const Hero = () => {
             <span className="ml-1.5">whoami</span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] text-balance">
+          <p className="font-mono text-sm text-muted-foreground mb-2">
+            Hi, my name is
+          </p>
+
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight leading-[1.05] text-balance">
             Bhavya
             <br />
-            <span className="font-serif text-accent font-normal italic lg:text-9xl leading-none">
+            <span className="font-serif text-accent font-normal italic lg:text-9xl xl:text-[10rem] leading-none">
               Dang
             </span>
           </h1>
@@ -74,11 +78,11 @@ export const Hero = () => {
           transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <div className="relative">
-            <div className="relative w-48 h-48 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full overflow-hidden shadow-xl ring-1 ring-black/10 dark:ring-white/10">
+            <div className="relative w-48 h-48 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] rounded-full overflow-hidden shadow-xl ring-1 ring-black/10 dark:ring-white/10">
               <Image
                 src="/meV-1.webp"
                 fill
-                sizes="(max-width: 640px) 192px, (max-width: 768px) 288px, 320px"
+                sizes="(max-width: 640px) 192px, (max-width: 768px) 288px, (max-width: 1024px) 320px, (max-width: 1280px) 384px, 448px"
                 alt="Bhavya Dang"
                 className={`object-cover transition-all duration-500 ${
                   isImageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
