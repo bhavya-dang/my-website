@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import { Navbar } from "@/components/Navbar";
 import { AudioProvider } from "@/context/AudioContext";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const baseUrl = "https://bhavyadang.in";
 
@@ -93,6 +94,7 @@ export default function RootLayout({
           </AudioProvider>
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
