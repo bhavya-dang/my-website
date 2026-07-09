@@ -1,180 +1,99 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import RoleScramble from "../app/roles";
 import { externalLinks } from "@/constants/index";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-import WorkStatus from "@/components/work-status";
-import { useWindowSize } from "@/app/hooks/useWindowSize";
-// import "boxicons";
-// import AboutMeModal from "../components/AboutMeModal";
-
-import { Inter } from "next/font/google";
 import { FileUser } from "lucide-react";
 import { motion } from "framer-motion";
-
-const inter = Inter({ subsets: ["latin"] });
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8 },
-};
-
-const fadeIn = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  transition: { duration: 0.8 },
-};
-
-const scaleIn = {
-  initial: { scale: 0.8, opacity: 0 },
-  animate: { scale: 1, opacity: 1 },
-  transition: { duration: 0.8 },
-};
+import WorkStatus from "./work-status";
 
 export const Hero = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const { width } = useWindowSize();
-
-  const getImageSize = (): { w: number; h: number } => {
-    if (width && width < 640) return { w: 200, h: 200 };
-    if (width && width >= 640 && width < 1024) return { w: 300, h: 300 };
-    return { w: 400, h: 400 };
-  };
-
-  const { w, h } = getImageSize();
 
   return (
-    <div className="flex flex-col md:flex-row items-center md:items-center gap-y-4 justify-center min-h-screen px-2 lg:mr-12 md:px-6 -mt-28">
-      {/* Small Hero for Mobile */}
-      <motion.div
-        className="small-hero w-full md:hidden flex justify-center mb-4"
-        initial={fadeInUp.initial}
-        animate={fadeInUp.animate}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="relative">
-          <Image
-            src="/me---.jpeg"
-            height={h}
-            width={w}
-            alt="Hero Image"
-            className={`rounded-full dark:shadow-[0_0_1rem_-0.1rem_#fff8] shadow-[0_0_1rem_-0.1rem_#000] hero-join-button-dark-i transition-all duration-500 ${
-              isImageLoaded ? "opacity-100" : "opacity-0"
-            }`}
-            onLoadingComplete={() => setIsImageLoaded(true)}
-            priority
-          />
-        </div>
-      </motion.div>
-
-      {/* Text Section */}
-      <motion.div
-        className="w-full md:w-1/2 md:ml-3 flex flex-col items-center md:items-start lg:ml-[7.5rem] text-center md:text-left mt-2 md:mt-0"
-        {...fadeInUp}
-      >
-        <div className="flex items-center whitespace-nowrap">
-          <motion.h1
-            className={`text-2xl lg:text-4xl font-extrabold ${inter.className}`}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-          >
-            hi,&nbsp;
-          </motion.h1>
-          <motion.h1
-            className={`text-2xl lg:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:text-violet-500 bg-opacity-50 ${inter.className}`}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          >
-            {" "}
-            bhavya&nbsp;
-          </motion.h1>
-          <motion.h1
-            className={`text-2xl lg:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-b from-black to-black/[0.6] dark:text-white bg-opacity-50 ${inter.className}`}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          >
-            {" "}
-            here.&nbsp;
-          </motion.h1>
-        </div>
-
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center py-16 sm:py-24 md:py-32"
+    >
+      <div className="w-full max-w-5xl mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
         <motion.div
-          className="mt-2 flex flex-col items-center md:items-start lg:mt-4"
-          {...fadeInUp}
+          className="order-2 md:order-1 text-center sm:text-left"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <div className="flex items-center justify-center">
-            <RoleScramble className="font-mono italic text-md md:text-xl lg:text-2xl mt-2 font-semibold text-neutral-500 dark:text-neutral-400 whitespace-nowrap" />
+          <div className="font-mono text-xs sm:text-sm text-muted-foreground mb-4">
+            <span className="text-accent">$</span>
+            <span className="ml-1.5">whoami</span>
           </div>
 
-          {/* external links */}
-          <motion.ul
-            className="external-links flex items-start gap-x-4 mt-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          >
+          <p className="font-mono text-sm text-muted-foreground mb-2">
+            Hi, my name is
+          </p>
+
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight leading-[1.05] text-balance">
+            Bhavya
+            <br />
+            <span className="font-serif text-accent font-normal italic lg:text-9xl xl:text-[10rem] leading-none">
+              Dang
+            </span>
+          </h1>
+
+          <div className="w-10 h-0.5 bg-accent mt-7 mb-5 mx-auto sm:mx-0" />
+
+          <p className="font-mono text-sm text-muted-foreground">
+            Developer &amp; Designer{" "}
+          </p>
+
+          <WorkStatus className="mt-3 justify-center sm:justify-start" />
+
+          {/*<div className="mt-8 flex items-center gap-5">
             {externalLinks.map((s, i) => (
-              <motion.li
+              <a
                 key={i}
-                whileHover={{ opacity: 0.8 }}
-                transition={{ duration: 0.2 }}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-200"
+                aria-label={s.label}
               >
-                <a
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-colors duration-300"
-                >
-                  {s.label === "Github" ? (
-                    <GitHubLogoIcon className="w-5 h-5 transition ease-linear" />
-                  ) : s.label === "LinkedIn" ? (
-                    <LinkedInLogoIcon className="w-5 h-5 transition ease-linear" />
-                  ) : s.label === "Youtube" ? (
-                    <i className="bx bxl-youtube text-2xl"></i>
-                  ) : (
-                    <FileUser className="w-5 h-5 transition ease-linear" />
-                  )}
-                </a>
-              </motion.li>
+                {s.label === "Github" ? (
+                  <GitHubLogoIcon className="w-5 h-5" />
+                ) : s.label === "LinkedIn" ? (
+                  <LinkedInLogoIcon className="w-5 h-5" />
+                ) : s.label === "Youtube" ? (
+                  <span className="text-xl font-bold">YT</span>
+                ) : (
+                  <FileUser className="w-5 h-5" />
+                )}
+              </a>
             ))}
-          </motion.ul>
-          <WorkStatus className="hidden md:flex" />
+          </div>*/}
         </motion.div>
-      </motion.div>
 
-      {/* Image Section for larger screens */}
-      <motion.div
-        className="hidden w-full md:w-1/2 md:flex justify-center ml-96"
-        {...scaleIn}
-      >
-        <div className="relative">
-          <Image
-            src="/me---.jpeg"
-            alt="Hero Image"
-            className={`rounded-full p-[1px] dark:shadow-[0_0_5rem_-0.5rem_#fff8] shadow-[0_0_5rem_-0.5rem_#000] hero-join-button-dark-i transition-all duration-500 ${
-              isImageLoaded ? "opacity-100" : "opacity-0"
-            }`}
-            width={w}
-            height={h}
-            priority
-            quality={100}
-            onLoadingComplete={() => setIsImageLoaded(true)}
-          />
-        </div>
-      </motion.div>
-
-      {/* {isModalOpen && (
-        <>
-          <div className="fixed inset-0 bg-black/80 z-40"></div>
-          <AboutMeModal onClose={() => setIsModalOpen(false)} />
-        </>
-      )} */}
-    </div>
+        <motion.div
+          className="order-1 md:order-2 flex justify-center md:justify-end"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <div className="relative">
+            <div className="relative w-48 h-48 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] rounded-full overflow-hidden shadow-xl ring-1 ring-black/10 dark:ring-white/10">
+              <Image
+                src="/meV-1.webp"
+                fill
+                sizes="(max-width: 640px) 192px, (max-width: 768px) 288px, (max-width: 1024px) 320px, (max-width: 1280px) 384px, 448px"
+                alt="Bhavya Dang"
+                className={`object-cover transition-all duration-500 ${
+                  isImageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                }`}
+                priority
+                onLoadingComplete={() => setIsImageLoaded(true)}
+              />
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
   );
 };

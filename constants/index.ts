@@ -1,18 +1,4 @@
 import { ExternalLinkType, NavLink } from "@/type";
-import {
-  AlignLeft,
-  ExternalLink,
-  Home,
-  Feather,
-  Github,
-  LinkedinIcon,
-  Frame,
-  FileDigit,
-  Images,
-  Mic,
-  Mic2,
-  Youtube,
-} from "lucide-react";
 
 export const externalLinks: ExternalLinkType[] = [
   {
@@ -35,11 +21,16 @@ export const externalLinks: ExternalLinkType[] = [
 ];
 
 export const navLinks: NavLink[] = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/journey", label: "Journey" },
+  { href: "/#hero", label: "Home" },
+  { href: "/#now", label: "Now" },
+  { href: "/#stack", label: "Stack" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#open-source", label: "Open Source" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#videos", label: "Videos" },
+  { href: "/#art", label: "Art" },
   { href: "https://wiki.bhavyadang.in", label: "Wiki" },
-  { href: "/art", label: "Art" },
+  { href: "https://resume.bhavyadang.in", label: "Resume" },
 ];
 
 export const notionColors: {
@@ -68,6 +59,10 @@ export const notionColors: {
 };
 
 export const changelog = [
+  {
+    date: "07/07/26",
+    items: ["major site overhaul", "switched to a single page layout"],
+  },
   {
     date: "16/06/26",
     items: [
