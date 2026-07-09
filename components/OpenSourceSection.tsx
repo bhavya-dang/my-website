@@ -1,11 +1,20 @@
-import { Star, ExternalLink, GitPullRequestArrow } from "lucide-react";
-import { ReactNode } from "react";
+import { ExternalLink, GitPullRequestArrow, Github } from "lucide-react";
+
+export interface Highlight {
+  description: string;
+  prUrl: string;
+}
 
 export interface Repo {
   name: string;
-  highlight: ReactNode;
-  prUrl: string;
   githubUrl: string;
+  liveUrl?: string;
+  highlights: Highlight[];
+}
+
+function getPrNumber(url: string): string {
+  const match = url.match(/\/pull\/(\d+)/);
+  return match ? `#${match[1]}` : "";
 }
 
 export default function OpenSourceSection({ repos }: { repos: Repo[] }) {
@@ -37,7 +46,7 @@ export default function OpenSourceSection({ repos }: { repos: Repo[] }) {
           >
             <div className="flex items-start justify-between gap-3">
               <a
-                href={repo.githubUrl}
+                href={repo.liveUrl ?? repo.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-foreground text-sm hover:text-accent transition-colors inline-flex items-center gap-1.5"
@@ -45,30 +54,39 @@ export default function OpenSourceSection({ repos }: { repos: Repo[] }) {
                 {repo.name}
                 <ExternalLink className="w-3 h-3 opacity-40 shrink-0" />
               </a>
-              {/*<a
-                href={repo.liveUrl}
+
+              <a
+                href={repo.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors font-mono"
+                aria-label="View source on GitHub"
+                className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                <ExternalLink className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">demo</span>
-              </a>*/}
+                <Github className="w-4 h-4" />
+              </a>
             </div>
 
-            <div className="text-sm text-muted-foreground leading-relaxed">
-              {repo.highlight}
-            </div>
-
-            <a
-              href={repo.prUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-auto inline-flex items-center gap-1.5 text-xs text-accent hover:underline"
-            >
-              <GitPullRequestArrow className="w-3.5 h-3.5" />
-              View pull request
-            </a>
+            {repo.highlights.length > 0 && (
+              <ul className="text-sm text-muted-foreground leading-relaxed space-y-2">
+                {repo.highlights.map((h, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 before:mt-1.5 before:block before:h-1.5 before:w-1.5 before:shrink-0 before:rounded-full before:bg-muted-foreground"
+                  >
+                    <span className="flex-1">{h.description}</span>
+                    <a
+                      href={h.prUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-accent shrink-0 mt-0.5"
+                    >
+                      <GitPullRequestArrow className="w-3 h-3" />
+                      {getPrNumber(h.prUrl)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
       </div>

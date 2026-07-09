@@ -71,10 +71,19 @@ export default async function Home() {
     {
       name: "pyfenn/fenn",
       githubUrl: "https://github.com/pyfenn/fenn",
-      highlight:
-        "Added a pre-commit hook to validate commit message format follow conventional commits format",
-      prUrl: "https://github.com/pyfenn/fenn/pull/232",
       liveUrl: "https://pyfenn.com/",
+      highlights: [
+        {
+          description:
+            "Added a pre-commit hook to validate commit message format follow conventional commits format",
+          prUrl: "https://github.com/pyfenn/fenn/pull/232",
+        },
+        {
+          description:
+            "Added docstrings to Flow class and its public methods which is a directed-graph orchestrator for chaining Node executions",
+          prUrl: "https://github.com/pyfenn/fenn/pull/239",
+        },
+      ],
     },
   ];
 
